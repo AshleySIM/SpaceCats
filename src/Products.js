@@ -12,6 +12,8 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, auth})=
             return (
               <li key={ product.id }>
                 { product.name }
+                ${product.price}
+                {product.description}
                 {
                   auth.id ? (
                     cartItem ? <button onClick={ ()=> updateLineItem(cartItem)}>Add Another</button>: <button onClick={ ()=> createLineItem(product)}>Add</button>

@@ -41,9 +41,10 @@ const seed = async()=> {
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
       name VARCHAR(100) UNIQUE NOT NULL,
-      price INT DECIMAL (10,2),
-      description TEXT (250)
-    );
+      price DECIMAL(10,2),
+      description CHAR(2000)
+      );
+     
 
     CREATE TABLE orders(
       id UUID PRIMARY KEY,
@@ -69,11 +70,11 @@ const seed = async()=> {
     createUser({ username: 'lucy', password: 'l_password', is_admin: false}),
     createUser({ username: 'ethyl', password: '1234', is_admin: true})
   ]);
-  const [foo, bar, bazz, quq] = await Promise.all([
-    createProduct({ name: 'foo', price: '1000', description:'Cats are cool' }),
-    createProduct({ name: 'bar', price: '2000', description:'we love cats' }),
-    createProduct({ name: 'quq', price:'3000', description:'especially space cats' }),
-    createProduct({ name: 'bazz', price:'4000', description:'buy our cats' }),
+  const [foo, bar, quq, bazz] = await Promise.all([
+    createProduct({ name: 'foo ', price:'10 ', description:' Welcome to SpaceCats '}),
+    createProduct({ name: 'bar ', price: '20 ', description: ' welcome to spaceCats '}),
+    createProduct({ name: 'quq ', price: '30 ', description: ' welcome to spacecats '}),
+    createProduct({ name: 'bazz ', price: '40 ', description: ' Welcome To Spacecats '}),
   ]);
   let orders = await fetchOrders(ethyl.id);
   let cart = orders.find(order => order.is_cart);
