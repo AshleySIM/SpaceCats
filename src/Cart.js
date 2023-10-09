@@ -11,7 +11,7 @@ const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products })=> {
             return (
               <li key={ lineItem.id }>
                 { product.name }
-                ({ lineItem.quantity })
+                ({ lineItem.quantity })(${((product.price * lineItem.quantity) / 1).toFixed(2)})
                 <button onClick={ ()=> removeFromCart(lineItem)}>Remove From Cart</button>
               </li>
             );
