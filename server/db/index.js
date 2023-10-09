@@ -27,6 +27,7 @@ const seed = async()=> {
     DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
+    
 
     CREATE TABLE users(
       id UUID PRIMARY KEY,
@@ -39,8 +40,11 @@ const seed = async()=> {
     CREATE TABLE products(
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
-      name VARCHAR(100) UNIQUE NOT NULL
-    );
+      name VARCHAR(100) UNIQUE NOT NULL,
+      price DECIMAL(10,2),
+      description CHAR(2000)
+      );
+     
 
     CREATE TABLE orders(
       id UUID PRIMARY KEY,
@@ -66,11 +70,11 @@ const seed = async()=> {
     createUser({ username: 'lucy', password: 'l_password', is_admin: false}),
     createUser({ username: 'ethyl', password: '1234', is_admin: true})
   ]);
-  const [foo, bar, bazz] = await Promise.all([
-    createProduct({ name: 'foo' }),
-    createProduct({ name: 'bar' }),
-    createProduct({ name: 'bazz' }),
-    createProduct({ name: 'quq' }),
+  const [foo, bar, quq, bazz] = await Promise.all([
+    createProduct({ name: 'foo ', price:'10 ', description:' Welcome to SpaceCats '}),
+    createProduct({ name: 'bar ', price: '20 ', description: ' welcome to spaceCats '}),
+    createProduct({ name: 'quq ', price: '30 ', description: ' welcome to spacecats '}),
+    createProduct({ name: 'bazz ', price: '40 ', description: ' Welcome To Spacecats '}),
   ]);
   let orders = await fetchOrders(ethyl.id);
   let cart = orders.find(order => order.is_cart);
