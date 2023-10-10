@@ -23,6 +23,7 @@ const {
 
 const seed = async()=> {
   const SQL = `
+    DROP TABLE IF EXISTS bookmarks;
     DROP TABLE IF EXISTS line_items;
     DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS orders;
@@ -43,7 +44,14 @@ const seed = async()=> {
       name VARCHAR(100) UNIQUE NOT NULL,
       price DECIMAL(10,2),
       description CHAR(2000)
-      );
+    );
+
+    CREATE TABLE bookmarks (
+      id UUID PRIMARY KEY,
+      created_at TIMESTAMP DEFAULT now(),
+      user_id UUID REFERENCES users(id) NOT NULL,
+      product_id UUID REFERENCES products(id) NOT NULL
+    );
      
 
     CREATE TABLE orders(
