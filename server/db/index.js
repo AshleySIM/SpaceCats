@@ -90,6 +90,12 @@ const seed = async()=> {
     createProduct({ name: 'bazz ', price: '40 ', description: ' Welcome To Spacecats '}),
   ]);
 
+  const bookmark = await createBookmark(moe.id, foo.id);
+  console.log(`Created bookmark with ID: ${bookmark}`);
+
+  const userBookmarks = await fetchBookmarks(moe.id);
+  console.log('User Bookmarks:', userBookmarks);
+
   let orders = await fetchOrders(ethyl.id);
   let cart = orders.find(order => order.is_cart);
   let lineItem = await createLineItem({ order_id: cart.id, product_id: foo.id});
@@ -106,6 +112,7 @@ module.exports = {
   fetchLineItems,
   fetchBookmarks,
   createLineItem,
+  createBookmark,
   updateLineItem,
   deleteLineItem,
   updateOrder,
