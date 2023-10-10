@@ -20,6 +20,11 @@ const {
   fetchOrders
 } = require('./cart');
 
+const {
+  fetchBookmarks,
+  createBookmark
+} = require('./bookmarks')
+
 
 const seed = async()=> {
   const SQL = `
@@ -84,6 +89,7 @@ const seed = async()=> {
     createProduct({ name: 'quq ', price: '30 ', description: ' welcome to spacecats '}),
     createProduct({ name: 'bazz ', price: '40 ', description: ' Welcome To Spacecats '}),
   ]);
+
   let orders = await fetchOrders(ethyl.id);
   let cart = orders.find(order => order.is_cart);
   let lineItem = await createLineItem({ order_id: cart.id, product_id: foo.id});
@@ -98,6 +104,7 @@ module.exports = {
   fetchProducts,
   fetchOrders,
   fetchLineItems,
+  fetchBookmarks,
   createLineItem,
   updateLineItem,
   deleteLineItem,
