@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products }) => {
+const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, updateLineItem, subtractLineItem }) => {
+
   const cartItems = lineItems.filter(
     (lineItem) => lineItem.order_id === cart.id
   );
@@ -34,8 +35,13 @@ const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products }) => {
               <li key={lineItem.id}>
                 {product.name}({lineItem.quantity})($
                 {((product.price * lineItem.quantity) / 1).toFixed(2)})
+                <br></br>
+                <button onClick={ () => updateLineItem(lineItem)}> + Add 1 {product.name} </button>
+                <br></br>
+                <button onClick={ () => subtractLineItem(lineItem)}> - remove 1 {product.name} </button>
+                <br></br>
                 <button onClick={() => removeFromCart(lineItem)}>
-                  Remove From Cart
+                  Remove All {product.name} From Cart
                 </button>
               </li>
             );
