@@ -21,7 +21,7 @@ const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, updateLi
                 <button onClick={ () => subtractLineItem(lineItem)}> - remove 1 {product.name} </button>
                 <br></br>
                 <button onClick={() => removeFromCart(lineItem)}>
-                  Remove From Cart
+                  Remove All {product.name} From Cart
                 </button>
               </li>
             );
