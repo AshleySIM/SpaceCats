@@ -2,6 +2,7 @@ const client = require("./client");
 const { v4 } = require("uuid");
 const uuidv4 = v4;
 
+
 const fetchBookmarks = async (userId) => {
   try {
     const SQL = `
@@ -10,12 +11,14 @@ const fetchBookmarks = async (userId) => {
           INNER JOIN products ON bookmarks.product_id = products.id
           WHERE bookmarks.user_id = $1;
         `;
+
     const { rows } = await client.query(SQL, [userId]);
     return rows;
   } catch (error) {
     throw error;
   }
 };
+
 
 const createBookmark = async (user_id, product_id) => {
   try {
@@ -38,4 +41,4 @@ const createBookmark = async (user_id, product_id) => {
 module.exports = {
   fetchBookmarks,
   createBookmark
-};
+
