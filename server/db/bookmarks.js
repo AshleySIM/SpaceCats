@@ -41,4 +41,4 @@ const createBookmark = async (user_id, product_id) => {
 module.exports = {
   fetchBookmarks,
   createBookmark
-
+}

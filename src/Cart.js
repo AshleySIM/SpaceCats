@@ -38,7 +38,7 @@ const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, updateLi
                 <br></br>
                 <button onClick={ () => updateLineItem(lineItem)}> + Add 1 {product.name} </button>
                 <br></br>
-                <button onClick={ () => subtractLineItem(lineItem)}> - remove 1 {product.name} </button>
+                <button onClick={ () => { lineItem.quantity > 1 ? subtractLineItem(lineItem): removeFromCart(lineItem)}}> - remove 1 {product.name} </button>
                 <br></br>
                 <button onClick={() => removeFromCart(lineItem)}>
                   Remove All {product.name} From Cart
