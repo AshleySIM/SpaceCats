@@ -6,11 +6,13 @@ import Orders from './Orders';
 import Cart from './Cart';
 import Login from './Login';
 import api from './api';
+import Bookmarks from './Bookmarks';
 
 const App = ()=> {
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [lineItems, setLineItems] = useState([]);
+  const [bookmarks, setBookmarks] = useState([]);
   const [auth, setAuth] = useState({});
 
   const attemptLoginWithToken = async()=> {
@@ -41,6 +43,15 @@ const App = ()=> {
     if(auth.id){
       const fetchData = async()=> {
         await api.fetchLineItems(setLineItems);
+      };
+      fetchData();
+    }
+  }, [auth]);
+
+  useEffect(()=> {
+    if(auth.id){
+      const fetchData = async()=> {
+        await api.fetchBookmarks(setBookmarks);
       };
       fetchData();
     }
@@ -92,6 +103,7 @@ const App = ()=> {
               <Link to='/products'>Products ({ products.length })</Link>
               <Link to='/orders'>Orders ({ orders.filter(order => !order.is_cart).length })</Link>
               <Link to='/cart'>Cart ({ cartCount })</Link>
+              <Link to='/bookmarks'>Bookmarks ({ bookmarks.length })</Link>
               <span>
                 Welcome { auth.username }!
                 <button onClick={ logout }>Logout</button>
@@ -119,6 +131,11 @@ const App = ()=> {
                 products = { products }
                 lineItems = { lineItems }
               />
+              <Bookmarks
+                bookmarks = { bookmarks }
+                products = { products }
+                auth = { auth }
+                />
             </main>
             </>
         ):(

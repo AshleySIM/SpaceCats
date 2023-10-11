@@ -3,16 +3,17 @@ const { v4 } = require("uuid");
 const uuidv4 = v4;
 
 
-const fetchBookmarks = async (userId) => {
+const fetchBookmarks = async (user_id) => {
   try {
     const SQL = `
           SELECT *
           FROM bookmarks
-          INNER JOIN products ON bookmarks.product_id = products.id
-          WHERE bookmarks.user_id = $1;
+          WHERE bookmarks.user_id = $1
         `;
 
-    const { rows } = await client.query(SQL, [userId]);
+    const { rows } = await client.query(SQL, [user_id]);
+    console.log(user_id)
+    console.log(rows)
     return rows;
   } catch (error) {
     throw error;
