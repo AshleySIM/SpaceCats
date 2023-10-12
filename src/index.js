@@ -116,6 +116,7 @@ const App = ()=> {
                 cartItems = { cartItems }
                 createLineItem = { createLineItem }
                 updateLineItem = { updateLineItem }
+                bookmarks = { bookmarks }
               />
               <Cart
                 cart = { cart }
