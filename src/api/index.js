@@ -58,6 +58,11 @@ const removeFromCart = async({ lineItem, lineItems, setLineItems })=> {
   setLineItems(lineItems.filter( _lineItem => _lineItem.id !== lineItem.id));
 };
 
+const deleteOrder = async({order, setOrders}) => {
+  const response = await axios.delete(`/api/orders/${order.id}`,getHeaders());
+setOrders(orders.filter(_order => _order.id !== order.id));
+}
+
 const attemptLoginWithToken = async(setAuth)=> {
   const token = window.localStorage.getItem('token');
   if(token){
@@ -85,6 +90,11 @@ const logout = (setAuth)=> {
   setAuth({});
 }
 
+const createUser = async(user) => {
+  const response = await axios.post('/api/users', user );
+  setUsers([...users , response.data]);
+}
+
 const api = {
   login,
   logout,
@@ -95,8 +105,10 @@ const api = {
   updateLineItem,
   subtractLineItem,
   updateOrder,
+  deleteOrder,
   removeFromCart,
-  attemptLoginWithToken
+  attemptLoginWithToken,
+  createUser
 };
 
 export default api;
