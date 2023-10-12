@@ -28,4 +28,15 @@ app.get('/me', isLoggedIn, (req, res, next)=> {
   }
 });
 
+app.post('/users', async(req, res, next)=> {
+  try {
+    const token = await authenticate(req.body);
+    res.send({ token });
+  }
+  catch(ex){
+    next(ex);
+  }
+});
+
+
 module.exports = app;
