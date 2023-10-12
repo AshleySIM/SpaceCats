@@ -9,7 +9,6 @@ const {
   
   app.get('/', isLoggedIn, async(req, res, next)=> {
     try {
-      console.log(req.user)
       res.send(await fetchBookmarks(req.user.id));
     }
     catch(ex){

@@ -12,8 +12,6 @@ const fetchBookmarks = async (user_id) => {
         `;
 
     const { rows } = await client.query(SQL, [user_id]);
-    console.log(user_id)
-    console.log(rows)
     return rows;
   } catch (error) {
     throw error;
