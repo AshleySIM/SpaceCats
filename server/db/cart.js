@@ -28,7 +28,8 @@ const ensureCart = async(lineItem)=> {
     `;
     const response = await client.query(SQL, [lineItem.id]);
     orderId = response.rows[0].order_id;
-  }
+    
+  } 
   const SQL = `
     SELECT * 
     FROM orders
@@ -100,11 +101,16 @@ const fetchOrders = async(userId)=> {
   return response.rows;
 };
 
+
+
+
 module.exports = {
   fetchLineItems,
   createLineItem,
   updateLineItem,
   deleteLineItem,
   updateOrder,
-  fetchOrders
+  fetchOrders,
+  
+
 };

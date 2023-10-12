@@ -17,7 +17,7 @@ const {
   updateLineItem,
   deleteLineItem,
   updateOrder,
-  fetchOrders
+  fetchOrders,
 } = require('./cart');
 
 const {
@@ -117,6 +117,7 @@ module.exports = {
   deleteLineItem,
   updateOrder,
   authenticate,
+  createUser,
   findUserByToken,
   seed,
   client
