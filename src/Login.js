@@ -11,6 +11,7 @@ const Login = ({ login })=> {
     }
     catch(ex){
       console.log(ex.response.data);
+      window.alert('incorrect username and/or password')
     }
   }
   return (
