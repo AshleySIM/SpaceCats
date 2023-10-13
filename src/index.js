@@ -81,8 +81,8 @@ const App = () => {
     await api.login({ credentials, setAuth });
   };
 
-  const createUser = async (credentials) => {
-    await api.signup({ credentials, setAuth });
+  const createUser = async ( user) => {
+    await api.createUser({ user, setAuth });
   };
 
   const logout = () => {

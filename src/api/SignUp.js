@@ -19,7 +19,7 @@ const SignUp = ({ createUser }) =>{
             
             catch(ex){
                 console.log(user)
-                console.log(ex.response)
+                console.log(ex)
             }
         }
     
