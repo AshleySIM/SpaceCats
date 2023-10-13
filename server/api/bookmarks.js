@@ -18,7 +18,7 @@ const {
 
   app.post('/', isLoggedIn, async(req, res, next)=> {
     try {
-      res.send(await createBookmark(req.body));
+      res.send(await createBookmark(req.user.id, req.body.product_id));
     }
     catch(ex){
       next(ex);

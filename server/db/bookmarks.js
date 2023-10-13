@@ -28,8 +28,8 @@ const createBookmark = async (user_id, product_id) => {
       VALUES ($1, $2, $3)
       RETURNING *;
     `;
-
-    const { rows } = await client.query(SQL, [bookmarkId, user_id, product_id]);
+    console.log(bookmarkId, user_id, product_id)
+    const { rows } = await client.query(SQL, [ bookmarkId, user_id, product_id ]);
 
     return rows[0];
   } catch (error) {

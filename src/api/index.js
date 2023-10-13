@@ -49,6 +49,7 @@ const createBookmark = async ({ product, bookmarks, setBookmarks }) => {
     getHeaders()
   );
   setBookmarks([...bookmarks, response.data]);
+  
 };
 
 const updateBookmarks = async ({ product, bookmarks, setBookmarks }) => {
