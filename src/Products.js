@@ -8,6 +8,7 @@ const Products = ({
   updateLineItem,
   auth,
   bookmarks,
+  createBookmark,
 }) => {
   return (
     <div>
@@ -37,7 +38,7 @@ const Products = ({
                 bookmark ? (
                   <button>Remove Bookmark</button>
                 ) : (
-                  <button>Bookmark</button>
+                  <button onClick={() => createBookmark(product)}>Bookmark</button>
                 )
               ) : null}
               {auth.is_admin ? (

@@ -15,9 +15,14 @@ const {
       next(ex);
     }
   });
-  
-  app.put('/:id', isLoggedIn, (req, res, next)=> {
-    res.send('hello world');
+
+  app.post('/', isLoggedIn, async(req, res, next)=> {
+    try {
+      res.send(await createBookmark(req.body));
+    }
+    catch(ex){
+      next(ex);
+    }
   });
   
   

@@ -40,6 +40,28 @@ const createLineItem = async ({ product, cart, lineItems, setLineItems }) => {
   setLineItems([...lineItems, response.data]);
 };
 
+const createBookmark = async ({ product, bookmarks, setBookmarks }) => {
+  const response = await axios.post(
+    "/api/bookmarks",
+    {
+      product_id: product.id,
+    },
+    getHeaders()
+  );
+  setBookmarks([...bookmarks, response.data]);
+};
+
+const updateBookmarks = async ({ product, bookmarks, setBookmarks }) => {
+  const response = await axios.put(
+    `/api/bookmarks/${bookmarks.id}`,
+    {
+      product_id: product.id,
+    },
+    getHeaders()
+  );
+  setBookmarks([...bookmarks, response.data]);
+}
+
 const updateLineItem = async ({ lineItem, cart, lineItems, setLineItems }) => {
   const response = await axios.put(
     `/api/lineItems/${lineItem.id}`,
@@ -124,6 +146,8 @@ const api = {
   fetchOrders,
   fetchLineItems,
   fetchBookmarks,
+  updateBookmarks,
+  createBookmark,
   createLineItem,
   updateLineItem,
   subtractLineItem,
