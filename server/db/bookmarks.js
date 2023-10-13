@@ -37,7 +37,17 @@ const createBookmark = async (user_id, product_id) => {
   }
 };
 
+const deleteBookmark = async (bookmark) => {
+  const SQL = `
+  DELETE from bookmarks
+  WHERE id = $1
+  `;
+  console.log(bookmark.id)
+  await client.query(SQL, [bookmark.id]);
+};
+
 module.exports = {
   fetchBookmarks,
-  createBookmark
+  createBookmark,
+  deleteBookmark
 }

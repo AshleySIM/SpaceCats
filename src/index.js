@@ -58,7 +58,7 @@ const App = () => {
   }, [auth]);
 
   const createBookmark = async (product) => {
-    await api.createBookmark({ product, setBookmarks});
+    await api.createBookmark({ product, bookmarks, setBookmarks});
   };
 
   const createLineItem = async (product) => {
@@ -79,6 +79,10 @@ const App = () => {
 
   const removeFromCart = async (lineItem) => {
     await api.removeFromCart({ lineItem, lineItems, setLineItems });
+  };
+
+  const deleteBookmark = async (bookmark) => {
+    await api.deleteBookmark({ bookmark, bookmarks, setBookmarks});
   };
 
   const cart = orders.find((order) => order.is_cart) || {};
@@ -123,6 +127,7 @@ const App = () => {
               updateLineItem={updateLineItem}
               bookmarks={bookmarks}
               createBookmark={createBookmark}
+              deleteBookmark={deleteBookmark}
             />
             <Cart
               cart={cart}

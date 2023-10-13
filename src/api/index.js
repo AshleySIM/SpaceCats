@@ -114,6 +114,15 @@ const removeFromCart = async ({ lineItem, lineItems, setLineItems }) => {
   setLineItems(lineItems.filter((_lineItem) => _lineItem.id !== lineItem.id));
 };
 
+const deleteBookmark = async ({ bookmark, bookmarks, setBookmarks }) => {
+  console.log(bookmark.id)
+  const response = await axios.delete(
+    `/api/bookmarks/${bookmark.id}`,
+    getHeaders()
+  );
+  setBookmarks(bookmarks.filter((_bookmark) => _bookmark.id !== bookmark.id));
+};
+
 const attemptLoginWithToken = async (setAuth) => {
   const token = window.localStorage.getItem("token");
   if (token) {
@@ -154,6 +163,7 @@ const api = {
   subtractLineItem,
   updateOrder,
   removeFromCart,
+  deleteBookmark,
   attemptLoginWithToken,
 };
 

@@ -9,6 +9,8 @@ const Products = ({
   auth,
   bookmarks,
   createBookmark,
+  deleteBookmark,
+  bookmark
 }) => {
   return (
     <div>
@@ -36,7 +38,7 @@ const Products = ({
               ) : null}
               {auth.id ? (
                 bookmark ? (
-                  <button>Remove Bookmark</button>
+                  <button onClick={() => deleteBookmark(bookmark)}>Remove Bookmark</button>
                 ) : (
                   <button onClick={() => createBookmark(product)}>Bookmark</button>
                 )
