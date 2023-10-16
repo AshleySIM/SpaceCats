@@ -92,11 +92,17 @@ const seed = async()=> {
     createProduct({ name: 'Hoodie ', price: '55 ', description: ' A SpaceCat on a hoodie???? Our super comfortable SpaceCats hoodie, has a 99.9% chance of being abducted by your girlfriend! '}),
   ]);
 
+
   const bookmark = await createBookmark(moe.id, Poster.id);
   console.log(`Created bookmark with ID: ${bookmark}`);
 
   const userBookmarks = await fetchBookmarks(moe.id);
   console.log('User Bookmarks:', userBookmarks);
+
+  const bookmark = await Promise.all ([
+    createBookmark(moe.id, Poster.id),
+    createBookmark(lucy.id, Shirt.id),
+  ]);
 
   let orders = await fetchOrders(ethyl.id);
   let cart = orders.find(order => order.is_cart);
