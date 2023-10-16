@@ -10,3 +10,10 @@ form {
 form > * {
   margin: 0.5rem;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    background-color: #212121;
+    color: #FFFF;
+  }
+}
