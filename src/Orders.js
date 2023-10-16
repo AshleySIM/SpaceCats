@@ -1,6 +1,15 @@
 import React from 'react';
 
 const Orders = ({ orders, products, lineItems })=> {
+  const makeVip = (orders) =>{
+    for( let i = 0; i < orders.length; i++)
+    { if(orders.length >= 10){
+      orders.is_vip = true;
+    } 
+   }
+  };
+    console.log(orders.is_vip)
+  
   return (
     <div>
       <h2>Orders</h2>
