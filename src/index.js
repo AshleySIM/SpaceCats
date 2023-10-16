@@ -113,16 +113,15 @@ const App = () => {
       {auth.id ? (
         <>
           <nav>
-
+            <span>
+              Welcome {auth.username}!<button onClick={logout}>Logout</button>
+            </span>
             <Link to="/products">Products ({products.length})</Link>
             <Link to="/orders">
               Orders ({orders.filter((order) => !order.is_cart).length})
             </Link>
             <Link to="/cart">Cart ({cartCount})</Link>
             <Link to="/bookmarks">Bookmarks ({bookmarks.length})</Link>
-            <span>
-              Welcome {auth.username}!<button onClick={logout}>Logout</button>
-            </span>
           </nav>
           <main>
             <Products
