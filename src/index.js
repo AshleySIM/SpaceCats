@@ -115,7 +115,7 @@ const App = () => {
           <nav>
             <span>
               Welcome {auth.username}!<button onClick={logout}>Logout</button>
-            </span>
+             </span>
             <Link to="/products">Products ({products.length})</Link>
             <Link to="/orders">
               Orders ({orders.filter((order) => !order.is_cart).length})

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Bookmarks = ({ bookmarks, products, auth }) => {
   return (
-    <div>
+    <div className='bookDiv'>
       <h2>Bookmarks</h2>
       <ul>
         {bookmarks.filter((bookmark) => bookmark.user_id === auth.id)

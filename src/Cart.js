@@ -22,7 +22,7 @@ const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, updateLi
   const fixedPrice = totalPrice.toFixed(2);
 
   return (
-    <div>
+    <div className='cartDiv'>
       <h2>Cart $({fixedPrice})</h2>
       <ul>
         {lineItems
@@ -36,9 +36,9 @@ const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, updateLi
                 {product.name}({lineItem.quantity})($
                 {((product.price * lineItem.quantity) / 1).toFixed(2)})
                 <br></br>
-                <button onClick={ () => updateLineItem(lineItem)}> + Add 1 {product.name} </button>
+                <button onClick={ () => updateLineItem(lineItem)}> + 1 {product.name} </button>
                 <br></br>
-                <button onClick={ () => { lineItem.quantity > 1 ? subtractLineItem(lineItem): removeFromCart(lineItem)}}> - remove 1 {product.name} </button>
+                <button onClick={ () => { lineItem.quantity > 1 ? subtractLineItem(lineItem): removeFromCart(lineItem)}}> - 1 {product.name} </button>
                 <br></br>
                 <button onClick={() => removeFromCart(lineItem)}>
                   Remove All {product.name} From Cart

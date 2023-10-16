@@ -115,7 +115,6 @@ const removeFromCart = async ({ lineItem, lineItems, setLineItems }) => {
 };
 
 const deleteBookmark = async ({ bookmark, bookmarks, setBookmarks }) => {
-  console.log(bookmark.id)
   const response = await axios.delete(
     `/api/bookmarks/${bookmark.id}`,
     getHeaders()

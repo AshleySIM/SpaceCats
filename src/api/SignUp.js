@@ -24,7 +24,6 @@ const SignUp = ({ createUser }) =>{
         }
     
     return (
-
         <form onSubmit={save}>
             <input 
             placeholder=" Create Username"

@@ -11,16 +11,15 @@ const Orders = ({ orders, products, lineItems })=> {
     console.log(orders.is_vip)
   
   return (
-    <div>
+    <div className='ordersDiv'>
       <h2>Orders</h2>
-      <ul>
+      <ul className='ordersList'>
         {
           orders.filter(order => !order.is_cart).map( order => {
             const orderLineItems = lineItems.filter(lineItem => lineItem.order_id === order.id);
             return (
               <li key={ order.id }>
                 ({ new Date(order.created_at).toLocaleString() })
-               
                 <ul>
                   {
                     orderLineItems.map( lineItem => {

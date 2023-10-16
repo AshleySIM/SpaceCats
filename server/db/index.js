@@ -90,11 +90,7 @@ const seed = async()=> {
     createProduct({ name: 'Hat ', price: '20 ', description: ' Walk around in style with our premium SpaceCat trucker hat! Bill to the front or back, it does not matter if you are a SPACECAT! '}),
     createProduct({ name: 'Shirt ', price: '30 ', description: ' SpaceCats run the world. Our Elite one of a kind tri-blend tees are so soft, you will feel like your floating in space! '}),
     createProduct({ name: 'Hoodie ', price: '55 ', description: ' A SpaceCat on a hoodie???? Our super comfortable SpaceCats hoodie, has a 99.9% chance of being abducted by your girlfriend! '}),
-  ]);
-
-
-  const bookmark = await createBookmark(moe.id, Poster.id);
-  console.log(`Created bookmark with ID: ${bookmark}`);
+   ]);
 
   const userBookmarks = await fetchBookmarks(moe.id);
   console.log('User Bookmarks:', userBookmarks);

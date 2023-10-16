@@ -29,7 +29,7 @@ const { deleteBookmark } = require('../db/bookmarks');
   app.delete('/:id', isLoggedIn, async(req, res, next)=> {
     console.log(req.params.id)
     try {
-      await deleteBookmark(req.params.id);
+      await deleteBookmark({id: req.params.id});
       res.sendStatus(204);
     }
     catch(ex){
