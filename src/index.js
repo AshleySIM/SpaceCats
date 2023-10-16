@@ -82,7 +82,6 @@ const App = () => {
     await api.removeFromCart({ lineItem, lineItems, setLineItems });
   };
 
-<<<<<<< HEAD
   const deleteBookmark = async (bookmark) => {
     await api.deleteBookmark({ bookmark, bookmarks, setBookmarks});
   };
@@ -156,6 +155,7 @@ const App = () => {
             products={products}
             cartItems={cartItems}
             bookmarks={bookmarks}
+            />
           <SignUp createUser={createUser} />
           <Products
             products={products}
