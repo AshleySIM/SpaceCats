@@ -23,13 +23,19 @@ const {
 const {
   fetchBookmarks,
   createBookmark
-} = require('./bookmarks')
+} = require('./bookmarks');
+
+const {
+  fetchReviews,
+  createReview,
+} = require('./reviews');
 
 
 const seed = async()=> {
   const SQL = `
     DROP TABLE IF EXISTS bookmarks;
     DROP TABLE IF EXISTS line_items;
+    DROP TABLE IF EXISTS reviews;
     DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
@@ -77,6 +83,14 @@ const seed = async()=> {
       CONSTRAINT product_and_order_key UNIQUE(product_id, order_id)
     );
 
+    CREATE TABLE reviews(
+      id UUID PRIMARY KEY,
+      product VARCHAR(100) REFERENCES products(name),
+      stars INTEGER NOT NULL, 
+      comment VARCHAR(1000)
+      
+    );
+
   `;
   await client.query(SQL);
 
@@ -103,6 +117,10 @@ const seed = async()=> {
     createBookmark(moe.id, Poster.id),
     createBookmark(lucy.id, Shirt.id),
   ]);
+ 
+ const firstReview = await Promise.all ([
+    createReview({ product: 'foo', stars: 3, comment: 'average'}),
+
 
   let orders = await fetchOrders(ethyl.id);
   let cart = orders.find(order => order.is_cart);
@@ -119,8 +137,10 @@ module.exports = {
   fetchOrders,
   fetchLineItems,
   fetchBookmarks,
+  fetchReviews,
   createLineItem,
   createBookmark,
+  createReview,
   updateLineItem,
   deleteLineItem,
   updateOrder,

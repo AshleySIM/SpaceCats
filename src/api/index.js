@@ -13,8 +13,10 @@ const fetchProducts = async (setProducts) => {
   setProducts(response.data);
 };
 
-const fetchOrders = async (setOrders) => {
-  const response = await axios.get("/api/orders", getHeaders());
+  const fetchReviews = async(setReviews)=> {
+  const response = await axios.get('/api/reviews');
+  setReviews(response.data);
+};
   setOrders(response.data);
 };
 
@@ -39,6 +41,7 @@ const createLineItem = async ({ product, cart, lineItems, setLineItems }) => {
   );
   setLineItems([...lineItems, response.data]);
 };
+
 
 const createBookmark = async ({ product, bookmarks, setBookmarks }) => {
   const response = await axios.post(
@@ -163,6 +166,7 @@ const api = {
   login,
   logout,
   fetchProducts,
+  fetchReviews,
   fetchOrders,
   fetchLineItems,
   fetchBookmarks,
