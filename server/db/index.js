@@ -40,7 +40,8 @@ const seed = async()=> {
       created_at TIMESTAMP DEFAULT now(),
       username VARCHAR(100) UNIQUE NOT NULL,
       password VARCHAR(100) NOT NULL,
-      is_admin BOOLEAN DEFAULT false 
+      is_admin BOOLEAN DEFAULT false,
+      is_vip BOOLEAN DEFAULT false
     );
 
     CREATE TABLE products(
@@ -63,7 +64,8 @@ const seed = async()=> {
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
       is_cart BOOLEAN NOT NULL DEFAULT true,
-      user_id UUID REFERENCES users(id) NOT NULL
+      user_id UUID REFERENCES users(id) NOT NULL,
+      is_vip BOOLEAN DEFAULT false
     );
 
     CREATE TABLE line_items(
@@ -83,14 +85,14 @@ const seed = async()=> {
     createUser({ username: 'lucy', password: 'l_password', is_admin: false}),
     createUser({ username: 'ethyl', password: '1234', is_admin: true})
   ]);
-  const [foo, bar, quq, bazz] = await Promise.all([
-    createProduct({ name: 'foo ', price:'10 ', description:' Welcome to SpaceCats '}),
-    createProduct({ name: 'bar ', price: '20 ', description: ' welcome to spaceCats '}),
-    createProduct({ name: 'quq ', price: '30 ', description: ' welcome to spacecats '}),
-    createProduct({ name: 'bazz ', price: '40 ', description: ' Welcome To Spacecats '}),
+  const [Poster, Hat, Shirt, Hoodie] = await Promise.all([
+    createProduct({ name: 'Poster ', price:'10 ', description:' Want to join the SpaceCats club? Now you can with our premium one of a kind SpaceCat poster! Let your friends know you are a SpaceCat. '}),
+    createProduct({ name: 'Hat ', price: '20 ', description: ' Walk around in style with our premium SpaceCat trucker hat! Bill to the front or back, it does not matter if you are a SPACECAT! '}),
+    createProduct({ name: 'Shirt ', price: '30 ', description: ' SpaceCats run the world. Our Elite one of a kind tri-blend tees are so soft, you will feel like your floating in space! '}),
+    createProduct({ name: 'Hoodie ', price: '55 ', description: ' A SpaceCat on a hoodie???? Our super comfortable SpaceCats hoodie, has a 99.9% chance of being abducted by your girlfriend! '}),
   ]);
 
-  const bookmark = await createBookmark(moe.id, foo.id);
+  const bookmark = await createBookmark(moe.id, Poster.id);
   console.log(`Created bookmark with ID: ${bookmark}`);
 
   const userBookmarks = await fetchBookmarks(moe.id);
@@ -98,10 +100,10 @@ const seed = async()=> {
 
   let orders = await fetchOrders(ethyl.id);
   let cart = orders.find(order => order.is_cart);
-  let lineItem = await createLineItem({ order_id: cart.id, product_id: foo.id});
+  let lineItem = await createLineItem({ order_id: cart.id, product_id: Poster.id});
   lineItem.quantity++;
   await updateLineItem(lineItem);
-  lineItem = await createLineItem({ order_id: cart.id, product_id: bar.id});
+  lineItem = await createLineItem({ order_id: cart.id, product_id: Hat.id});
   cart.is_cart = false;
   await updateOrder(cart);
 };
