@@ -123,9 +123,14 @@ const deleteBookmark = async ({ bookmark, bookmarks, setBookmarks }) => {
   setBookmarks(bookmarks.filter((_bookmark) => _bookmark.id !== bookmark.id));
 };
 
-const attemptLoginWithToken = async (setAuth) => {
-  const token = window.localStorage.getItem("token");
-  if (token) {
+const deleteOrder = async({order, setOrders}) => {
+  const response = await axios.delete(`/api/orders/${order.id}`,getHeaders());
+setOrders(orders.filter(_order => _order.id !== order.id));
+}
+
+const attemptLoginWithToken = async(setAuth)=> {
+  const token = window.localStorage.getItem('token');
+  if(token){
     try {
       const response = await axios.get("/api/me", getHeaders());
       setAuth(response.data);
@@ -147,7 +152,12 @@ const login = async ({ credentials, setAuth }) => {
 const logout = (setAuth) => {
   window.localStorage.removeItem("token");
   setAuth({});
-};
+}
+
+const createUser = async(user) => {
+  const response = await axios.post('/api/users', user );
+  setUsers([...users , response.data]);
+}
 
 const api = {
   login,
@@ -162,9 +172,12 @@ const api = {
   updateLineItem,
   subtractLineItem,
   updateOrder,
+  deleteOrder,
   removeFromCart,
   deleteBookmark,
   attemptLoginWithToken,
+  attemptLoginWithToken,
+  createUser
 };
 
 export default api;

@@ -7,6 +7,7 @@ import Cart from "./Cart";
 import Login from "./Login";
 import api from "./api";
 import Bookmarks from "./Bookmarks";
+import SignUp from './api/SignUp';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -81,6 +82,7 @@ const App = () => {
     await api.removeFromCart({ lineItem, lineItems, setLineItems });
   };
 
+<<<<<<< HEAD
   const deleteBookmark = async (bookmark) => {
     await api.deleteBookmark({ bookmark, bookmarks, setBookmarks});
   };
@@ -99,6 +101,10 @@ const App = () => {
     await api.login({ credentials, setAuth });
   };
 
+  const createUser = async ( user) => {
+    await api.createUser({ user, setAuth });
+  };
+
   const logout = () => {
     api.logout(setAuth);
   };
@@ -108,6 +114,7 @@ const App = () => {
       {auth.id ? (
         <>
           <nav>
+
             <Link to="/products">Products ({products.length})</Link>
             <Link to="/orders">
               Orders ({orders.filter((order) => !order.is_cart).length})
@@ -149,6 +156,10 @@ const App = () => {
             products={products}
             cartItems={cartItems}
             bookmarks={bookmarks}
+          <SignUp createUser={createUser} />
+          <Products
+            products={products}
+            cartItems={cartItems}
             createLineItem={createLineItem}
             updateLineItem={updateLineItem}
             auth={auth}

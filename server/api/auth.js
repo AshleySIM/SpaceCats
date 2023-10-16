@@ -6,6 +6,7 @@ const {
 const express = require('express');
 const app = express.Router();
 const { isLoggedIn } = require('./middleware');
+const {createUser}= require('../db/auth')
 
 
 app.post('/login', async(req, res, next)=> {
@@ -27,5 +28,19 @@ app.get('/me', isLoggedIn, (req, res, next)=> {
     next(ex);
   }
 });
+
+app.post('/users', async(req, res, next)=> {
+  try {
+    
+    const user = req.body.user
+    console.log(user)
+    res.send(await createUser(user));
+    
+  }
+  catch(ex){
+    next(ex);
+  }
+});
+
 
 module.exports = app;

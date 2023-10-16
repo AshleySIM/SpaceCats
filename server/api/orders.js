@@ -1,7 +1,7 @@
 const {
   fetchOrders,
   updateOrder,
-} = require('../db');
+  } = require('../db');
 
 const express = require('express');
 const app = express.Router();
@@ -25,5 +25,7 @@ app.get('/', isLoggedIn, async(req, res, next)=> {
     next(ex);
   }
 });
+
+
 
 module.exports = app;

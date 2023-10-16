@@ -3,14 +3,15 @@ import React, { useState } from 'react';
 const Login = ({ login })=> {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
-  const _login = async(ev)=> {
+  
+    const _login = async(ev)=> {
     ev.preventDefault();
     try {
       await login({ username, password });
     }
     catch(ex){
       console.log(ex.response.data);
+      window.alert('incorrect username and/or password')
     }
   }
   return (
@@ -27,8 +28,18 @@ const Login = ({ login })=> {
         onChange={ ev => setPassword(ev.target.value)}
       />
       <button disabled={!username || !password}>Login</button>
-    </form>
-  );
-}
+      
+     </form>
+     );
+};
+
+
+
+  
+
+
+
+
+
 
 export default Login;
