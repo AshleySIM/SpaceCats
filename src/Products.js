@@ -11,7 +11,7 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, auth})=
             const cartItem = cartItems.find(lineItem => lineItem.product_id === product.id);
             return (
               <li key={ product.id }>
-                { product.name }
+                <Link to={`/products/${product.id}`}>{ product.name }</Link>
                 ${product.price}
                 {product.description}
                 {

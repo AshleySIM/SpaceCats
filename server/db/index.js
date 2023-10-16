@@ -23,13 +23,19 @@ const {
 const {
   fetchBookmarks,
   createBookmark
-} = require('./bookmarks')
+} = require('./bookmarks');
+
+const {
+  fetchReviews,
+  createReview,
+} = require('./reviews');
 
 
 const seed = async()=> {
   const SQL = `
     DROP TABLE IF EXISTS bookmarks;
     DROP TABLE IF EXISTS line_items;
+    DROP TABLE IF EXISTS reviews;
     DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
@@ -75,6 +81,14 @@ const seed = async()=> {
       CONSTRAINT product_and_order_key UNIQUE(product_id, order_id)
     );
 
+    CREATE TABLE reviews(
+      id UUID PRIMARY KEY,
+      product VARCHAR(100) REFERENCES products(name),
+      stars INTEGER NOT NULL, 
+      comment VARCHAR(1000)
+      
+    );
+
   `;
   await client.query(SQL);
 
@@ -84,10 +98,10 @@ const seed = async()=> {
     createUser({ username: 'ethyl', password: '1234', is_admin: true})
   ]);
   const [foo, bar, quq, bazz] = await Promise.all([
-    createProduct({ name: 'foo ', price:'10 ', description:' Welcome to SpaceCats '}),
-    createProduct({ name: 'bar ', price: '20 ', description: ' welcome to spaceCats '}),
-    createProduct({ name: 'quq ', price: '30 ', description: ' welcome to spacecats '}),
-    createProduct({ name: 'bazz ', price: '40 ', description: ' Welcome To Spacecats '}),
+    createProduct({ name: 'foo', price:'10 ', description:' Welcome to SpaceCats '}),
+    createProduct({ name: 'bar', price: '20 ', description: ' welcome to spaceCats '}),
+    createProduct({ name: 'quq', price: '30 ', description: ' welcome to spacecats '}),
+    createProduct({ name: 'bazz', price: '40 ', description: ' Welcome To Spacecats '}),
   ]);
 
   const bookmark = await createBookmark(moe.id, foo.id);
@@ -95,6 +109,10 @@ const seed = async()=> {
 
   const userBookmarks = await fetchBookmarks(moe.id);
   console.log('User Bookmarks:', userBookmarks);
+
+  const firstReview = await Promise.all ([
+    createReview({ product: 'foo', stars: 3, comment: 'average'}),
+  ]);
 
   let orders = await fetchOrders(ethyl.id);
   let cart = orders.find(order => order.is_cart);
@@ -111,8 +129,10 @@ module.exports = {
   fetchOrders,
   fetchLineItems,
   fetchBookmarks,
+  fetchReviews,
   createLineItem,
   createBookmark,
+  createReview,
   updateLineItem,
   deleteLineItem,
   updateOrder,
