@@ -120,7 +120,7 @@ const deleteBookmark = async ({ bookmark, bookmarks, setBookmarks }) => {
     `/api/bookmarks/${bookmark.id}`,
     getHeaders()
   );
-  setBookmarks(bookmarks.filter((_bookmark) => _bookmark.id !== bookmark.id));
+  setBookmarks(bookmarks.filter(_bookmark => _bookmark.id !== bookmark.id));
 };
 
 const deleteOrder = async({order, setOrders}) => {

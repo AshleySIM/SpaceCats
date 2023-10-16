@@ -151,17 +151,13 @@ const App = () => {
       ) : (
         <div>
           <Login login={login} />
-          <Products
-            products={products}
-            cartItems={cartItems}
-            bookmarks={bookmarks}
-            />
           <SignUp createUser={createUser} />
           <Products
             products={products}
             cartItems={cartItems}
             createLineItem={createLineItem}
             updateLineItem={updateLineItem}
+            bookmarks={bookmarks}
             auth={auth}
           />
         </div>

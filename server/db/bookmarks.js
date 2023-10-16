@@ -42,7 +42,6 @@ const deleteBookmark = async (bookmark) => {
   DELETE from bookmarks
   WHERE id = $1
   `;
-  console.log(bookmark.id)
   await client.query(SQL, [bookmark.id]);
 };
 
