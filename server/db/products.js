@@ -9,7 +9,6 @@ const fetchProducts = async () => {
     FROM products
   `;
   const response = await client.query(SQL);
-  console.log(response);
   return response.rows;
 }; 
 

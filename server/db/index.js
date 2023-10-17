@@ -63,7 +63,7 @@ const seed = async()=> {
       username VARCHAR(100) UNIQUE NOT NULL,
       password VARCHAR(100) NOT NULL,
       is_admin BOOLEAN DEFAULT false,
-      is_vip BOOLEAN DEFAULT false
+      is_vip BOOLEAN  DEFAULT false
     );
 
     CREATE TABLE products(
@@ -86,8 +86,8 @@ const seed = async()=> {
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
       is_cart BOOLEAN NOT NULL DEFAULT true,
-      user_id UUID REFERENCES users(id) NOT NULL,
-      is_vip BOOLEAN DEFAULT false
+      user_id UUID REFERENCES users(id) NOT NULL
+      
     );
 
     CREATE TABLE line_items(
@@ -126,6 +126,9 @@ const seed = async()=> {
     createProduct({ name: 'Shirt', price: '30', description: ' SpaceCats run the world. Our Elite one of a kind tri-blend tees are so soft, you will feel like your floating in space!', image: shirtImage}),
     createProduct({ name: 'Hoodie', price: '55', description: ' A SpaceCat on a hoodie???? Our super comfortable SpaceCats hoodie, has a 99.9% chance of being abducted by your girlfriend!', image: hoodieImage})
   ]);
+
+
+ 
 
   const userBookmarks = await fetchBookmarks(moe.id);
 

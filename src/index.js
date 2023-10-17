@@ -9,7 +9,6 @@ import api from "./api";
 import Bookmarks from "./Bookmarks";
 import SignUp from './api/SignUp';
 import Reviews from './Reviews';
-// import ProductDetail from './ProductDetail'
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -46,7 +45,7 @@ const App = () => {
     if (auth.id) {
       const fetchData = async () => {
         await api.fetchOrders(setOrders);
-      };
+      }
       fetchData();
     }
   }, [auth]);
