@@ -2,7 +2,6 @@ const client = require("./client");
 const { v4 } = require("uuid");
 const uuidv4 = v4;
 
-
 const fetchBookmarks = async (user_id) => {
   try {
     const SQL = `
@@ -18,7 +17,6 @@ const fetchBookmarks = async (user_id) => {
   }
 };
 
-
 const createBookmark = async (user_id, product_id) => {
   try {
     const bookmarkId = uuidv4();
@@ -28,8 +26,7 @@ const createBookmark = async (user_id, product_id) => {
       VALUES ($1, $2, $3)
       RETURNING *;
     `;
-    console.log(bookmarkId, user_id, product_id)
-    const { rows } = await client.query(SQL, [ bookmarkId, user_id, product_id ]);
+    const { rows } = await client.query(SQL, [bookmarkId, user_id, product_id]);
 
     return rows[0];
   } catch (error) {
@@ -48,5 +45,5 @@ const deleteBookmark = async (bookmark) => {
 module.exports = {
   fetchBookmarks,
   createBookmark,
-  deleteBookmark
-}
+  deleteBookmark,
+};

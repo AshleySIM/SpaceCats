@@ -75,7 +75,7 @@ main::-webkit-scrollbar {
 .ordersDiv,
 .bookDiv,
 .reviewsDiv {
-  border: solid 2px white;
+  /* border: solid 2px white; */
   padding: 0.5rem;
   width: calc(95vw/3);
 }
@@ -110,7 +110,7 @@ img {
 }
 
 .btnDiv {
-  border: solid 2px white;
+  /* border: solid 2px white; */
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
