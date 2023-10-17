@@ -25,13 +25,17 @@ const Products = ({
           );
           return (
             <div className="productCard" key={product.id}>
+            
               <h2>{product.name}</h2>
               <p key={product.id}>
                 {product.description}
                 <br></br>
                 ${product.price}
                 <br></br>
-                {auth.id ? (
+                {
+                product.image ? <img src={ product.image } /> : null
+              }
+              {auth.id ? (
                   cartItem ? (
                     <button onClick={() => updateLineItem(cartItem)}>
                       Add Another

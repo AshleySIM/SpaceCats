@@ -8,6 +8,8 @@ import Login from "./Login";
 import api from "./api";
 import Bookmarks from "./Bookmarks";
 import SignUp from './api/SignUp';
+import Reviews from './Reviews';
+import ProductDetail from './ProductDetail'
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -15,6 +17,7 @@ const App = () => {
   const [lineItems, setLineItems] = useState([]);
   const [bookmarks, setBookmarks] = useState([]);
   const [auth, setAuth] = useState({});
+  const [reviews, setReviews] = useState([]);
 
   const attemptLoginWithToken = async () => {
     await api.attemptLoginWithToken(setAuth);
@@ -30,6 +33,14 @@ const App = () => {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await api.fetchReviews(setReviews);
+    };
+    fetchData();
+  }, []);
+
 
   useEffect(() => {
     if (auth.id) {
@@ -65,6 +76,7 @@ const App = () => {
   const createLineItem = async (product) => {
     await api.createLineItem({ product, cart, lineItems, setLineItems });
   };
+
 
   const updateLineItem = async (lineItem) => {
     await api.updateLineItem({ lineItem, cart, lineItems, setLineItems });
@@ -120,8 +132,13 @@ const App = () => {
             <Link to="/orders">
               Orders ({orders.filter((order) => !order.is_cart).length})
             </Link>
+
             <Link to="/cart">Cart ({cartCount})</Link>
             <Link to="/bookmarks">Bookmarks ({bookmarks.length})</Link>
+            <Link to='/reviews'> Reviews ({reviews.length}) </Link>
+            <span>
+              Welcome {auth.username}!<button onClick={logout}>Logout</button>
+            </span>
           </nav>
           <main>
             <Products
@@ -145,6 +162,9 @@ const App = () => {
             />
             <Orders orders={orders} products={products} lineItems={lineItems} />
             <Bookmarks bookmarks={bookmarks} products={products} auth={auth} />
+            <Reviews 
+              reviews = {reviews}
+              products= {products} />
           </main>
         </>
       ) : (
@@ -159,6 +179,10 @@ const App = () => {
             bookmarks={bookmarks}
             auth={auth}
           />
+          <Reviews 
+            reviews = {reviews}
+            products= {products} />
+          
         </div>
       )}
     </div>
