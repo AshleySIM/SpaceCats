@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { Link, HashRouter, Routes, Route } from "react-router-dom";
+import { Link, HashRouter, Router, Routes, Route } from "react-router-dom";
 import Products from "./Products";
 import Orders from "./Orders";
 import Cart from "./Cart";
@@ -9,7 +9,7 @@ import api from "./api";
 import Bookmarks from "./Bookmarks";
 import SignUp from './api/SignUp';
 import Reviews from './Reviews';
-import ProductDetail from './ProductDetail'
+// import ProductDetail from './ProductDetail'
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -141,7 +141,9 @@ const App = () => {
             </span>
           </nav>
           <main>
-            <Products
+            <Routes>
+              <Route path="/products" element={
+              <Products
               auth={auth}
               products={products}
               cartItems={cartItems}
@@ -150,7 +152,8 @@ const App = () => {
               bookmarks={bookmarks}
               createBookmark={createBookmark}
               deleteBookmark={deleteBookmark}
-            />
+            />} />
+            <Route path="/lineItems" element={
             <Cart
               cart={cart}
               lineItems={lineItems}
@@ -159,12 +162,14 @@ const App = () => {
               removeFromCart={removeFromCart}
               updateLineItem={updateLineItem}
               subtractLineItem={subtractLineItem}
-            />
-            <Orders orders={orders} products={products} lineItems={lineItems} />
-            <Bookmarks bookmarks={bookmarks} products={products} auth={auth} />
-            <Reviews 
-              reviews = {reviews}
-              products= {products} />
+            />} />
+            <Route path="/orders" element={<Orders orders={orders} products={products} lineItems={lineItems} />} />
+            <Route path="/bookmarks" element={<Bookmarks bookmarks={bookmarks} products={products} auth={auth} />} />
+            <Route path="/reviews" element={
+              <Reviews 
+                reviews = {reviews}
+                products= {products} />} />
+              </Routes>
           </main>
         </>
       ) : (

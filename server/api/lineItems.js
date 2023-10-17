@@ -19,6 +19,7 @@ app.get('/', isLoggedIn, async(req, res, next)=> {
 });
 
 app.post('/', isLoggedIn, async(req, res, next)=> {
+  console.log(req.body)
   try {
     //TODO make sure the order's user_id is req.user.id 
     res.send(await createLineItem(req.body));
