@@ -46,7 +46,7 @@ const App = () => {
     if (auth.id) {
       const fetchData = async () => {
         await api.fetchOrders(setOrders);
-      };
+      }
       fetchData();
     }
   }, [auth]);

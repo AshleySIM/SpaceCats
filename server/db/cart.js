@@ -27,7 +27,9 @@ const ensureCart = async(lineItem)=> {
       WHERE id = $1 
     `;
     const response = await client.query(SQL, [lineItem.id]);
+    console.log(response)
     orderId = response.rows[0].order_id;
+    
     
   } 
   const SQL = `
