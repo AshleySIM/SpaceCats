@@ -32,13 +32,14 @@ const Products = ({
                 {product.description}
                 <br></br>${product.price}
                 <br></br>
+                <div className="btnDiv">
                 {auth.id ? (
                   cartItem ? (
-                    <button onClick={() => updateLineItem(cartItem)}>
+                    <button onClick={() => updateLineItem(cartItem)} className="btn">
                       Add Another
                     </button>
                   ) : (
-                    <button onClick={() => createLineItem(product)}>
+                    <button onClick={() => createLineItem(product)} className="btn">
                       Add to cart
                     </button>
                   )
@@ -46,15 +47,16 @@ const Products = ({
                 <br></br>
                 {auth.id ? (
                   bookmark ? (
-                    <button onClick={() => deleteBookmark(bookmark)}>
+                    <button onClick={() => deleteBookmark(bookmark)} className="btn">
                       Remove Bookmark
                     </button>
                   ) : (
-                    <button onClick={() => createBookmark(product)}>
+                    <button onClick={() => createBookmark(product)} className="btn">
                       Bookmark
                     </button>
                   )
                 ) : null}
+                </div>
                 <br></br>
                 {auth.is_admin ? (
                   <Link to={`/products/${product.id}/edit`}>Edit</Link>

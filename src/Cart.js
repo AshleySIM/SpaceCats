@@ -45,7 +45,7 @@ const Cart = ({
                 <p>Quantity: {lineItem.quantity}</p>
                 <p>(${((product.price * lineItem.quantity) / 1).toFixed(2)})</p>
                 <br></br>
-                <button onClick={() => updateLineItem(lineItem)}>
+                <button onClick={() => updateLineItem(lineItem)} className="btn">
                   {" "}
                   + 1 {product.name}{" "}
                 </button>
@@ -56,12 +56,13 @@ const Cart = ({
                       ? subtractLineItem(lineItem)
                       : removeFromCart(lineItem);
                   }}
+                  className="btn"
                 >
                   {" "}
                   - 1 {product.name}{" "}
                 </button>
                 <br></br>
-                <button onClick={() => removeFromCart(lineItem)}>
+                <button onClick={() => removeFromCart(lineItem)} className="btn">
                   Remove All {product.name} From Cart
                 </button>
               
@@ -69,11 +70,13 @@ const Cart = ({
             );
           })}
       </div>
+      <br></br>
       {lineItems.filter((lineItem) => lineItem.order_id === cart.id).length ? (
         <button
           onClick={() => {
             updateOrder({ ...cart, is_cart: false });
           }}
+          className="btn"
         >
           Create Order
         </button>
