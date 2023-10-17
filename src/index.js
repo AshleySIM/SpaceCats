@@ -7,8 +7,8 @@ import Cart from "./Cart";
 import Login from "./Login";
 import api from "./api";
 import Bookmarks from "./Bookmarks";
-import SignUp from './api/SignUp';
-import Reviews from './Reviews';
+import SignUp from "./api/SignUp";
+import Reviews from "./Reviews";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -40,12 +40,11 @@ const App = () => {
     fetchData();
   }, []);
 
-
   useEffect(() => {
     if (auth.id) {
       const fetchData = async () => {
         await api.fetchOrders(setOrders);
-      }
+      };
       fetchData();
     }
   }, [auth]);
@@ -69,13 +68,12 @@ const App = () => {
   }, [auth]);
 
   const createBookmark = async (product) => {
-    await api.createBookmark({ product, bookmarks, setBookmarks});
+    await api.createBookmark({ product, bookmarks, setBookmarks });
   };
 
   const createLineItem = async (product) => {
     await api.createLineItem({ product, cart, lineItems, setLineItems });
   };
-
 
   const updateLineItem = async (lineItem) => {
     await api.updateLineItem({ lineItem, cart, lineItems, setLineItems });
@@ -94,7 +92,7 @@ const App = () => {
   };
 
   const deleteBookmark = async (bookmark) => {
-    await api.deleteBookmark({ bookmark, bookmarks, setBookmarks});
+    await api.deleteBookmark({ bookmark, bookmarks, setBookmarks });
   };
 
   const cart = orders.find((order) => order.is_cart) || {};
@@ -111,7 +109,7 @@ const App = () => {
     await api.login({ credentials, setAuth });
   };
 
-  const createUser = async ( user) => {
+  const createUser = async (user) => {
     await api.createUser({ user, setAuth });
   };
 
@@ -126,7 +124,7 @@ const App = () => {
           <nav>
             <span>
               Welcome {auth.username}!<button onClick={logout}>Logout</button>
-             </span>
+            </span>
             <Link to="/products">Products ({products.length})</Link>
             <Link to="/orders">
               Orders ({orders.filter((order) => !order.is_cart).length})
@@ -134,41 +132,64 @@ const App = () => {
 
             <Link to="/cart">Cart ({cartCount})</Link>
             <Link to="/bookmarks">Bookmarks ({bookmarks.length})</Link>
-            <Link to='/reviews'> Reviews ({reviews.length}) </Link>
-            <span>
-              Welcome {auth.username}!<button onClick={logout}>Logout</button>
-            </span>
+            <Link to="/reviews"> Reviews ({reviews.length}) </Link>
           </nav>
           <main>
             <Routes>
-              <Route path="/products" element={
-              <Products
-              auth={auth}
-              products={products}
-              cartItems={cartItems}
-              createLineItem={createLineItem}
-              updateLineItem={updateLineItem}
-              bookmarks={bookmarks}
-              createBookmark={createBookmark}
-              deleteBookmark={deleteBookmark}
-            />} />
-            <Route path="/lineItems" element={
-            <Cart
-              cart={cart}
-              lineItems={lineItems}
-              products={products}
-              updateOrder={updateOrder}
-              removeFromCart={removeFromCart}
-              updateLineItem={updateLineItem}
-              subtractLineItem={subtractLineItem}
-            />} />
-            <Route path="/orders" element={<Orders orders={orders} products={products} lineItems={lineItems} />} />
-            <Route path="/bookmarks" element={<Bookmarks bookmarks={bookmarks} products={products} auth={auth} />} />
-            <Route path="/reviews" element={
-              <Reviews 
-                reviews = {reviews}
-                products= {products} />} />
-              </Routes>
+              <Route
+                path="/products"
+                element={
+                  <Products
+                    auth={auth}
+                    products={products}
+                    cartItems={cartItems}
+                    createLineItem={createLineItem}
+                    updateLineItem={updateLineItem}
+                    bookmarks={bookmarks}
+                    createBookmark={createBookmark}
+                    deleteBookmark={deleteBookmark}
+                  />
+                }
+              />
+              <Route
+                path="/cart"
+                element={
+                  <Cart
+                    cart={cart}
+                    lineItems={lineItems}
+                    products={products}
+                    updateOrder={updateOrder}
+                    removeFromCart={removeFromCart}
+                    updateLineItem={updateLineItem}
+                    subtractLineItem={subtractLineItem}
+                  />
+                }
+              />
+              <Route
+                path="/orders"
+                element={
+                  <Orders
+                    orders={orders}
+                    products={products}
+                    lineItems={lineItems}
+                  />
+                }
+              />
+              <Route
+                path="/bookmarks"
+                element={
+                  <Bookmarks
+                    bookmarks={bookmarks}
+                    products={products}
+                    auth={auth}
+                  />
+                }
+              />
+              <Route
+                path="/reviews"
+                element={<Reviews reviews={reviews} products={products} />}
+              />
+            </Routes>
           </main>
         </>
       ) : (
@@ -183,10 +204,7 @@ const App = () => {
             bookmarks={bookmarks}
             auth={auth}
           />
-          <Reviews 
-            reviews = {reviews}
-            products= {products} />
-          
+          <Reviews reviews={reviews} products={products} />
         </div>
       )}
     </div>

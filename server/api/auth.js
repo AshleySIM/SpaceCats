@@ -33,7 +33,6 @@ app.post('/users', async(req, res, next)=> {
   try {
     
     const user = req.body.user
-    console.log(user)
     res.send(await createUser(user));
     
   }

@@ -6,12 +6,14 @@ body {
   font-family: verdana;
   background-image: url(https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2021/07/mars_express/23402470-1-eng-GB/Mars_Express_pillars.png);
   background-size: cover;
+  color: white;
 }
 
 nav {
   /* border: solid 2px white; */
   display: flex;
   justify-content: space-around;
+  align-items: center;
   padding: 0.5rem;
   font-size: 24px;
 }
@@ -71,10 +73,11 @@ main::-webkit-scrollbar {
 
 .cartDiv,
 .ordersDiv,
-.bookDiv {
+.bookDiv,
+.reviewsDiv {
   /* border: solid 2px white; */
   padding: 0.5rem;
-  width: calc(95vw/3);
+  /* width: calc(95vw/3); */
 }
 
 .productsList {
@@ -83,7 +86,7 @@ main::-webkit-scrollbar {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 70vh;
+  height: 90vh;
   overflow-y: scroll;
 }
 
@@ -98,11 +101,10 @@ main::-webkit-scrollbar {
   margin: 0.5rem;
   width: 30vw;
   backdrop-filter: blur(10px);
+  text-align: center;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    background-color: #212121;
-    color: #ffff;
-  }
+img {
+  border-radius: 10px;
+  height: 300px;
 }
