@@ -15,6 +15,7 @@ const Products = ({
   return (
     <div>
       <h2>Products</h2>
+      {console.log(bookmarks)}
       <ul>
         {products.map((product) => {
           const cartItem = cartItems.find(
