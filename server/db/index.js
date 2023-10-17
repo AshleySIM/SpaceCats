@@ -1,4 +1,6 @@
 const client = require('./client');
+const path = require('path');
+const fs = require('fs');
 
 const {
   fetchProducts,
@@ -23,13 +25,33 @@ const {
 const {
   fetchBookmarks,
   createBookmark
-} = require('./bookmarks')
+} = require('./bookmarks');
 
+const {
+  fetchReviews,
+  createReview,
+} = require('./reviews');
+const { LoaderOptionsPlugin } = require('webpack');
+
+const loadImage = (filePath)=> {
+  return new Promise ((resolve, reject)=> {
+    const fullPath = path.join(__dirname, filePath);
+    fs.readFile(fullPath, 'base64', (err, result)=>{
+      if(err){
+        reject(err);
+      }
+      else{
+        resolve(`data:image/png;base64,${result}`);
+      }
+    });
+  });
+};
 
 const seed = async()=> {
   const SQL = `
     DROP TABLE IF EXISTS bookmarks;
     DROP TABLE IF EXISTS line_items;
+    DROP TABLE IF EXISTS reviews;
     DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
@@ -49,17 +71,17 @@ const seed = async()=> {
       created_at TIMESTAMP DEFAULT now(),
       name VARCHAR(100) UNIQUE NOT NULL,
       price DECIMAL(10,2),
-      description CHAR(2000)
+      description CHAR(2000),
+      image TEXT
     );
 
-    CREATE TABLE bookmarks (
+    CREATE TABLE bookmarks(
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
       user_id UUID REFERENCES users(id) NOT NULL,
       product_id UUID REFERENCES products(id) NOT NULL
     );
      
-
     CREATE TABLE orders(
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
@@ -77,6 +99,13 @@ const seed = async()=> {
       CONSTRAINT product_and_order_key UNIQUE(product_id, order_id)
     );
 
+    CREATE TABLE reviews(
+      id UUID PRIMARY KEY,
+      product VARCHAR(100) REFERENCES products(name),
+      stars INTEGER NOT NULL, 
+      comment VARCHAR(1000)
+      );
+
   `;
   await client.query(SQL);
 
@@ -85,23 +114,32 @@ const seed = async()=> {
     createUser({ username: 'lucy', password: 'l_password', is_admin: false}),
     createUser({ username: 'ethyl', password: '1234', is_admin: true})
   ]);
+
+  const posterImage = await loadImage('/images/poster.png');
+  const hatImage = await loadImage('/images/hat.png');
+  const shirtImage = await loadImage('/images/shirt.png');
+  const hoodieImage = await loadImage('/images/hoodie.png');
+
   const [Poster, Hat, Shirt, Hoodie] = await Promise.all([
-    createProduct({ name: 'Poster ', price:'10 ', description:' Want to join the SpaceCats club? Now you can with our premium one of a kind SpaceCat poster! Let your friends know you are a SpaceCat. '}),
-    createProduct({ name: 'Hat ', price: '20 ', description: ' Walk around in style with our premium SpaceCat trucker hat! Bill to the front or back, it does not matter if you are a SPACECAT! '}),
-    createProduct({ name: 'Shirt ', price: '30 ', description: ' SpaceCats run the world. Our Elite one of a kind tri-blend tees are so soft, you will feel like your floating in space! '}),
-    createProduct({ name: 'Hoodie ', price: '55 ', description: ' A SpaceCat on a hoodie???? Our super comfortable SpaceCats hoodie, has a 99.9% chance of being abducted by your girlfriend! '}),
+    createProduct({ name: 'Poster', price:'10', description:' Want to join the SpaceCats club? Now you can with our premium one of a kind SpaceCat poster! Let your friends know you are a SpaceCat.', image: posterImage}),
+    createProduct({ name: 'Hat', price: '20', description: ' Walk around in style with our premium SpaceCat trucker hat! Bill to the front or back, it does not matter if you are a SPACECAT!', image: hatImage}),
+    createProduct({ name: 'Shirt', price: '30', description: ' SpaceCats run the world. Our Elite one of a kind tri-blend tees are so soft, you will feel like your floating in space!', image: shirtImage}),
+    createProduct({ name: 'Hoodie', price: '55', description: ' A SpaceCat on a hoodie???? Our super comfortable SpaceCats hoodie, has a 99.9% chance of being abducted by your girlfriend!', image: hoodieImage})
   ]);
 
 
  
 
   const userBookmarks = await fetchBookmarks(moe.id);
-  console.log('User Bookmarks:', userBookmarks);
 
   const bookmark = await Promise.all ([
     createBookmark(moe.id, Poster.id),
     createBookmark(lucy.id, Shirt.id),
   ]);
+ 
+ const firstReview = await Promise.all ([
+    createReview({ product: 'Poster', stars: 3, comment: 'average'})
+ ]);
 
   let orders = await fetchOrders(ethyl.id);
   let cart = orders.find(order => order.is_cart);
@@ -118,8 +156,10 @@ module.exports = {
   fetchOrders,
   fetchLineItems,
   fetchBookmarks,
+  fetchReviews,
   createLineItem,
   createBookmark,
+  createReview,
   updateLineItem,
   deleteLineItem,
   updateOrder,

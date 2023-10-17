@@ -1,15 +1,7 @@
 import React from 'react';
 
 const Orders = ({ orders, products, lineItems, users })=> {
-  const makeVip = (orders, users) =>{
-    for( let i = 0; i < orders.length; i++)
-    { const order = orders[i];
-      const user = users.find((user)=> user.id === orders.user.id);
-        if(user && orders.length >= 10){
-          user.is_vip = true;
-        } 
-   }
-  };
+  
     
   
   return (

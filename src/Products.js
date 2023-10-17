@@ -15,6 +15,7 @@ const Products = ({
   return (
     <div>
       <h2>Products</h2>
+      {console.log(bookmarks)}
       <ul>
         {products.map((product) => {
           const cartItem = cartItems.find(
@@ -25,8 +26,12 @@ const Products = ({
           );
           return (
             <li key={product.id}>
+            
               {product.name}${product.price}
               {product.description}
+              {
+                product.image ? <img src={ product.image } /> : null
+              }
               {auth.id ? (
                 cartItem ? (
                   <button onClick={() => updateLineItem(cartItem)}>
