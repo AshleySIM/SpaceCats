@@ -10,13 +10,12 @@ const Products = ({
   bookmarks,
   createBookmark,
   deleteBookmark,
-  bookmark
+  bookmark,
 }) => {
   return (
-    <div>
-      <h2>Products</h2>
-      {console.log(bookmarks)}
-      <ul>
+    <div className="productsDiv">
+      <h1>Products</h1>
+      <div className="productsList">
         {products.map((product) => {
           const cartItem = cartItems.find(
             (lineItem) => lineItem.product_id === product.id
@@ -25,36 +24,48 @@ const Products = ({
             (bookmark) => bookmark.product_id === product.id
           );
           return (
-            <li key={product.id}>
-            
-              {product.name}${product.price}
-              {product.description}
-              {
-                product.image ? <img src={ product.image } /> : null
-              }
-              {auth.id ? (
-                cartItem ? (
-                  <button onClick={() => updateLineItem(cartItem)}>
-                    Add Another
-                  </button>
-                ) : (
-                  <button onClick={() => createLineItem(product)}>Add</button>
-                )
-              ) : null}
-              {auth.id ? (
-                bookmark ? (
-                  <button onClick={() => deleteBookmark(bookmark)}>Remove Bookmark</button>
-                ) : (
-                  <button onClick={() => createBookmark(product)}>Bookmark</button>
-                )
-              ) : null}
-              {auth.is_admin ? (
-                <Link to={`/products/${product.id}/edit`}>Edit</Link>
-              ) : null}
-            </li>
+            <div className="productCard" key={product.id}>
+              <h2>{product.name}</h2>
+              <p key={product.id}>
+                {product.image ? <img src={product.image} /> : null}
+                <br></br>
+                {product.description}
+                <br></br>${product.price}
+                <br></br>
+                <div className="btnDiv">
+                {auth.id ? (
+                  cartItem ? (
+                    <button onClick={() => updateLineItem(cartItem)} className="btn">
+                      Add Another
+                    </button>
+                  ) : (
+                    <button onClick={() => createLineItem(product)} className="btn">
+                      Add to cart
+                    </button>
+                  )
+                ) : null}
+                <br></br>
+                {auth.id ? (
+                  bookmark ? (
+                    <button onClick={() => deleteBookmark(bookmark)} className="btn">
+                      Remove Bookmark
+                    </button>
+                  ) : (
+                    <button onClick={() => createBookmark(product)} className="btn">
+                      Bookmark
+                    </button>
+                  )
+                ) : null}
+                </div>
+                <br></br>
+                {auth.is_admin ? (
+                  <Link to={`/products/${product.id}/edit`}>Edit</Link>
+                ) : null}
+              </p>
+            </div>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 };

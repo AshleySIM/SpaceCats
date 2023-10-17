@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 const Reviews = ({products, reviews}) => {
     console.log(reviews)
     return (
-        <>
-        <h2> Reviews </h2>
-        <ul>
+        <div className='reviewsDiv'>
+        <h1> Reviews </h1>
+        <ul className='reviewsList'>
             { reviews.map ( review => {
                 return (
-                    <li key = {review.id}>
+                    <li key = {review.id} className='review'>
                         Product: {review.product}
                         <br/>
                         Stars: {review.stars}
@@ -24,7 +24,7 @@ const Reviews = ({products, reviews}) => {
             }
         </ul>
         
-        </>
+        </div>
     )
 };
 

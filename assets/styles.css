@@ -1,19 +1,143 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: verdana;
+  background-image: url(https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2021/07/mars_express/23402470-1-eng-GB/Mars_Express_pillars.png);
+  background-size: cover;
+  color: white;
+}
+
+nav {
+  /* border: solid 2px white; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 24px;
+}
+
+a {
+  display: inline-block;
+  position: relative;
+  color: white;
+  text-decoration: none;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 form {
+  border: solid white 2 2px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-form > * {
+main {
+  /* border: solid 2px white; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+  height: 93vh;
+  overflow-y: scroll;
+}
+
+main::-webkit-scrollbar {
+  display: none;
+}
+
+.productsDiv {
+  /* border: solid 2px white; */
+  padding: 0.5rem;
+  width: 95vw;
+}
+
+.cartDiv,
+.ordersDiv,
+.bookDiv,
+.reviewsDiv {
+  border: solid 2px white;
+  padding: 0.5rem;
+  width: calc(95vw/3);
+}
+
+.productsList {
+  /* border: solid white 2px; */
+  display:flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 90vh;
+  overflow-y: scroll;
+}
+
+.productsList::-webkit-scrollbar {
+  display: none;
+}
+
+.productCard {
+  border: solid white 2px;
+  border-radius: 10px;
+  padding: 0.5rem;
   margin: 0.5rem;
+  width: 30vw;
+  backdrop-filter: blur(10px);
+  text-align: center;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    background-color: #212121;
-    color: #FFFF;
-  }
+img {
+  border-radius: 10px;
+  height: 300px;
 }
+
+.btnDiv {
+  border: solid 2px white;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn{
+  font-size: 14px;
+  color: #011023;
+  background-color: #ffffff;
+  padding: 10px 30px;
+  border: solid #ffffff 2px;
+  border-radius: 50px;
+  transition : 225ms;
+  transform: translateY(0);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  }
+
+  .btn:hover{
+  transition : 225ms;
+  padding: 10px 36px;
+  transform : translateY(-0px);
+  background-color: #011023;
+  color: #ffffff;
+  border: solid 2px #ffffff;
+  }

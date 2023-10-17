@@ -1,7 +1,14 @@
-import React from 'react';
+import React from "react";
 
-const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, updateLineItem, subtractLineItem }) => {
-
+const Cart = ({
+  updateOrder,
+  removeFromCart,
+  lineItems,
+  cart,
+  products,
+  updateLineItem,
+  subtractLineItem,
+}) => {
   const cartItems = lineItems.filter(
     (lineItem) => lineItem.order_id === cart.id
   );
@@ -22,9 +29,10 @@ const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, updateLi
   const fixedPrice = totalPrice.toFixed(2);
 
   return (
-    <div>
-      <h2>Cart $({fixedPrice})</h2>
-      <ul>
+    <div className="cartDiv">
+      <h1>Cart</h1>
+      <h2>Total: ${fixedPrice}</h2>
+      <div>
         {lineItems
           .filter((lineItem) => lineItem.order_id === cart.id)
           .map((lineItem) => {
@@ -32,26 +40,43 @@ const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, updateLi
               products.find((product) => product.id === lineItem.product_id) ||
               {};
             return (
-              <li key={lineItem.id}>
-                {product.name}({lineItem.quantity})($
-                {((product.price * lineItem.quantity) / 1).toFixed(2)})
+              <div>
+              <h2 key={lineItem.id}>{product.name}</h2>
+                <p>Quantity: {lineItem.quantity}</p>
+                <p>(${((product.price * lineItem.quantity) / 1).toFixed(2)})</p>
                 <br></br>
-                <button onClick={ () => updateLineItem(lineItem)}> + Add 1 {product.name} </button>
+                <button onClick={() => updateLineItem(lineItem)} className="btn">
+                  {" "}
+                  + 1 {product.name}{" "}
+                </button>
                 <br></br>
-                <button onClick={ () => { lineItem.quantity > 1 ? subtractLineItem(lineItem): removeFromCart(lineItem)}}> - remove 1 {product.name} </button>
+                <button
+                  onClick={() => {
+                    lineItem.quantity > 1
+                      ? subtractLineItem(lineItem)
+                      : removeFromCart(lineItem);
+                  }}
+                  className="btn"
+                >
+                  {" "}
+                  - 1 {product.name}{" "}
+                </button>
                 <br></br>
-                <button onClick={() => removeFromCart(lineItem)}>
+                <button onClick={() => removeFromCart(lineItem)} className="btn">
                   Remove All {product.name} From Cart
                 </button>
-              </li>
+              
+              </div>
             );
           })}
-      </ul>
+      </div>
+      <br></br>
       {lineItems.filter((lineItem) => lineItem.order_id === cart.id).length ? (
         <button
           onClick={() => {
             updateOrder({ ...cart, is_cart: false });
           }}
+          className="btn"
         >
           Create Order
         </button>
