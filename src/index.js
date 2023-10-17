@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom/client";
-import { Link, HashRouter, Routes, Route } from "react-router-dom";
-import Products from "./Products";
-import Orders from "./Orders";
-import Cart from "./Cart";
-import Login from "./Login";
-import api from "./api";
-import Bookmarks from "./Bookmarks";
+import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom/client';
+import { Link, HashRouter, Routes, Route } from 'react-router-dom';
+import Products from './Products';
+import Orders from './Orders';
+import Cart from './Cart';
+import Login from './Login';
+import api from './api';
 import SignUp from './api/SignUp';
 import Reviews from './Reviews';
-import ProductDetail from './ProductDetail'
+
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [lineItems, setLineItems] = useState([]);
-  const [bookmarks, setBookmarks] = useState([]);
   const [auth, setAuth] = useState({});
   const [reviews, setReviews] = useState([]);
 
@@ -60,18 +58,6 @@ const App = () => {
     }
   }, [auth]);
 
-  useEffect(() => {
-    if (auth.id) {
-      const fetchData = async () => {
-        await api.fetchBookmarks(setBookmarks);
-      };
-      fetchData();
-    }
-  }, [auth]);
-
-  const createBookmark = async (product) => {
-    await api.createBookmark({ product, bookmarks, setBookmarks});
-  };
 
   const createLineItem = async (product) => {
     await api.createLineItem({ product, cart, lineItems, setLineItems });
@@ -92,10 +78,6 @@ const App = () => {
 
   const removeFromCart = async (lineItem) => {
     await api.removeFromCart({ lineItem, lineItems, setLineItems });
-  };
-
-  const deleteBookmark = async (bookmark) => {
-    await api.deleteBookmark({ bookmark, bookmarks, setBookmarks});
   };
 
   const cart = orders.find((order) => order.is_cart) || {};
@@ -125,14 +107,11 @@ const App = () => {
       {auth.id ? (
         <>
           <nav>
-
-            <Link to="/products">Products ({products.length})</Link>
-            <Link to="/orders">
+            <Link to='/products'>Products ({products.length})</Link>
+            <Link to='/orders'>
               Orders ({orders.filter((order) => !order.is_cart).length})
             </Link>
-
-            <Link to="/cart">Cart ({cartCount})</Link>
-            <Link to="/bookmarks">Bookmarks ({bookmarks.length})</Link>
+            <Link to='/cart'>Cart ({cartCount})</Link>
             <Link to='/reviews'> Reviews ({reviews.length}) </Link>
             <span>
               Welcome {auth.username}!<button onClick={logout}>Logout</button>
@@ -145,9 +124,6 @@ const App = () => {
               cartItems={cartItems}
               createLineItem={createLineItem}
               updateLineItem={updateLineItem}
-              bookmarks={bookmarks}
-              createBookmark={createBookmark}
-              deleteBookmark={deleteBookmark}
             />
             <Cart
               cart={cart}
@@ -159,10 +135,10 @@ const App = () => {
               subtractLineItem={subtractLineItem}
             />
             <Orders orders={orders} products={products} lineItems={lineItems} />
-            <Bookmarks bookmarks={bookmarks} products={products} auth={auth} />
             <Reviews 
               reviews = {reviews}
               products= {products} />
+            
           </main>
         </>
       ) : (
@@ -174,7 +150,6 @@ const App = () => {
             cartItems={cartItems}
             createLineItem={createLineItem}
             updateLineItem={updateLineItem}
-            bookmarks={bookmarks}
             auth={auth}
           />
           <Reviews 
@@ -187,7 +162,7 @@ const App = () => {
   );
 };
 
-const root = ReactDOM.createRoot(document.querySelector("#root"));
+const root = ReactDOM.createRoot(document.querySelector('#root'));
 root.render(
   <HashRouter>
     <App />

@@ -120,6 +120,7 @@ const seed = async()=> {
  
  const firstReview = await Promise.all ([
     createReview({ product: 'foo', stars: 3, comment: 'average'}),
+    
 
 
   let orders = await fetchOrders(ethyl.id);

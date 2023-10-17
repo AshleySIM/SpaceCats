@@ -18,7 +18,7 @@ const fetchProducts = async (setProducts) => {
   setReviews(response.data);
 };
   setOrders(response.data);
-};
+
 
 const fetchLineItems = async (setLineItems) => {
   const response = await axios.get("/api/lineItems", getHeaders());
