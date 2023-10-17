@@ -1,14 +1,16 @@
 import React from 'react';
 
-const Orders = ({ orders, products, lineItems })=> {
-  const makeVip = (orders) =>{
+const Orders = ({ orders, products, lineItems, users })=> {
+  const makeVip = (orders, users) =>{
     for( let i = 0; i < orders.length; i++)
-    { if(orders.length >= 10){
-      orders.is_vip = true;
-    } 
+    { const order = orders[i];
+      const user = users.find((user)=> user.id === orders.user.id);
+        if(user && orders.length >= 10){
+          user.is_vip = true;
+        } 
    }
   };
-    console.log(orders.is_vip)
+    
   
   return (
     <div>

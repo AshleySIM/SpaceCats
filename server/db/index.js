@@ -41,7 +41,7 @@ const seed = async()=> {
       username VARCHAR(100) UNIQUE NOT NULL,
       password VARCHAR(100) NOT NULL,
       is_admin BOOLEAN DEFAULT false,
-      is_vip BOOLEAN DEFAULT false
+      is_vip BOOLEAN  DEFAULT false
     );
 
     CREATE TABLE products(
@@ -64,8 +64,8 @@ const seed = async()=> {
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
       is_cart BOOLEAN NOT NULL DEFAULT true,
-      user_id UUID REFERENCES users(id) NOT NULL,
-      is_vip BOOLEAN DEFAULT false
+      user_id UUID REFERENCES users(id) NOT NULL
+      
     );
 
     CREATE TABLE line_items(
@@ -93,8 +93,7 @@ const seed = async()=> {
   ]);
 
 
-  const bookmark = await createBookmark(moe.id, Poster.id);
-  console.log(`Created bookmark with ID: ${bookmark}`);
+ 
 
   const userBookmarks = await fetchBookmarks(moe.id);
   console.log('User Bookmarks:', userBookmarks);
