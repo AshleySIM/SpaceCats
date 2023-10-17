@@ -25,8 +25,12 @@ const Products = ({
           );
           return (
             <li key={product.id}>
+            
               {product.name}${product.price}
               {product.description}
+              {
+                product.image ? <img src={ product.image } /> : null
+              }
               {auth.id ? (
                 cartItem ? (
                   <button onClick={() => updateLineItem(cartItem)}>

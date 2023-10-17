@@ -13,10 +13,12 @@ const fetchProducts = async (setProducts) => {
   setProducts(response.data);
 };
 
-  const fetchReviews = async(setReviews)=> {
+const fetchReviews = async(setReviews)=> {
   const response = await axios.get('/api/reviews');
   setReviews(response.data);
 };
+const fetchOrders = async(setOrders)=> {
+  const response = await axios.get('/api/orders');
   setOrders(response.data);
 };
 
