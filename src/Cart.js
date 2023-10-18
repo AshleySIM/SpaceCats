@@ -32,6 +32,7 @@ const Cart = ({
     <div className="cartDiv">
       <h1>Cart</h1>
       <h2>Total: ${fixedPrice}</h2>
+      <div className="cartList2">
       <div>
         {lineItems
           .filter((lineItem) => lineItem.order_id === cart.id)
@@ -74,6 +75,7 @@ const Cart = ({
               </div>
             );
           })}
+      </div>
       </div>
       <hr></hr>
       {lineItems.filter((lineItem) => lineItem.order_id === cart.id).length ? (
