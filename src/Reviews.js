@@ -22,6 +22,7 @@ const Reviews = ({products, reviews, createReview, setReviews}) => {
      }
     
     return (
+    <>
         <div className='reviewsDiv'>
         
         <h1> Reviews </h1>
@@ -46,8 +47,6 @@ const Reviews = ({products, reviews, createReview, setReviews}) => {
             <input type="text" placeholder="comments" value= {comment} onChange={ev => setComment(ev.target.value)}></input>
             <button type="submit" disabled={!product || !stars}> Submit </button>
         </form>
-        
-        </div>
     
       <div className="reviewsList">
         {reviews.map((review) => {
@@ -64,6 +63,7 @@ const Reviews = ({products, reviews, createReview, setReviews}) => {
         })}
       </div>
     </div>
+</>
   );
 };
 
