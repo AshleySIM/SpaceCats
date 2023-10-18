@@ -57,6 +57,20 @@ const createBookmark = async ({ product, bookmarks, setBookmarks }) => {
   
 };
 
+const createReview = async ({ review, setReviews }) => {
+  const response = await axios.post(
+    "/api/reviews",
+    {
+     product: product,
+     stars: stars,
+     comment: comment,
+    },
+    getHeaders()
+  );
+  setReviews([...reviews, response.data]);
+  
+};
+
 const updateBookmarks = async ({ product, bookmarks, setBookmarks }) => {
   const response = await axios.put(
     `/api/bookmarks/${bookmarks.id}`,
