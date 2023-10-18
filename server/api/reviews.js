@@ -16,7 +16,7 @@ app.get('/', async(req, res, next)=> {
     }
   });
 
-  app.post('/reviews', isLoggedIn, async(req, res, next)=> {
+  app.post('/', isLoggedIn, async(req, res, next)=> {
     console.log(req.body);
     try {
       res.send(await createReview(req.body));

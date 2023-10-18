@@ -57,13 +57,14 @@ const createBookmark = async ({ product, bookmarks, setBookmarks }) => {
   
 };
 
-const createReview = async ({ product, stars, comments, reviews, setReviews }) => {
+const createReview = async ({review, setReviews, reviews}) => {
+  console.log(review)
   const response = await axios.post(
     "/api/reviews",
     {
-      product: product,
-     stars: stars,
-     comment: comment,
+      product: review.product,
+     stars: review.stars,
+     comment: review.comment,
     },
     getHeaders()
   );

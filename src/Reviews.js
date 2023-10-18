@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 
 
-const Reviews = ({products, reviews, createReview}) => {
+const Reviews = ({products, reviews, createReview, setReviews}) => {
     const [product, setProduct] = useState('');
     const [stars, setStars] = useState(1);
     const [comment, setComment] = useState('');
@@ -13,13 +13,15 @@ const Reviews = ({products, reviews, createReview}) => {
          product,
          stars,
          comment
-        };
+        }; 
+        console.log(reviews)
         await createReview(review);
         setProduct('');
         setStars(1);
         setComment('');
+       
      }
-    console.log(reviews)
+    
     return (
         <div className='reviewsDiv'>
         

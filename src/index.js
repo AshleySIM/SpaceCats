@@ -72,7 +72,8 @@ const App = () => {
   };
 
   const createReview = async (review) => {
-    await api.createReview({ review, setReviews });
+    console.log(reviews)
+    await api.createReview({ review, setReviews, reviews });
   };
 
   const createLineItem = async (product) => {
@@ -191,7 +192,7 @@ const App = () => {
               />
               <Route
                 path="/reviews"
-                element={<Reviews reviews={reviews} products={products} createReview={createReview}/>}
+                element={<Reviews reviews={reviews} products={products} createReview={createReview} setReviews={setReviews}/>}
               />
             </Routes>
           </main>
