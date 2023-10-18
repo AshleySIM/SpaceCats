@@ -138,8 +138,18 @@ const seed = async()=> {
   ]);
  
  const firstReview = await Promise.all ([
-    createReview({ product: 'Poster', stars: 3, comment: 'average'})
- ]);
+    createReview({ product: 'Poster', stars: 3, comment: "average"}),
+    createReview({ product: 'Poster', stars: 3, comment: "Average quality. Not bad, but not outstanding either."}),
+    createReview({ product: 'Hat', stars: 3, comment: "This hat is just okay. It serves its purpose, but there's nothing special about it."}),
+    createReview({ product: 'Shirt', stars: 3, comment: "Decent shirt. It's comfortable, but nothing to write home about."}),
+    createReview({ product: 'Hoodie', stars: 3, comment: "An average hoodie. Keeps you warm, but not the most stylish choice."}),
+    createReview({ product: 'Poster', stars: 3, comment: "Mediocre poster. The image is fine, but the paper quality could be better."}),
+    createReview({ product: 'Hat', stars: 3, comment: "It's an average hat. It fits well, but the design is a bit plain."}),
+    createReview({ product: 'Shirt', stars: 3, comment: "A middle-of-the-road shirt. It's just a basic wardrobe item."}),
+    createReview({ product: 'Hoodie', stars: 3, comment: "This hoodie is average. It keeps you warm, but it's not the softest material."}),
+    createReview({ product: 'Poster', stars: 3, comment: "Okay poster. The colors are decent, but I expected better print quality."}),
+    createReview({ product: 'Hat', stars: 3, comment: "This hat is average. It does its job, but it's not a standout accessory."}),
+    ]);
 
   let orders = await fetchOrders(ethyl.id);
   let cart = orders.find(order => order.is_cart);

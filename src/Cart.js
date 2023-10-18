@@ -40,8 +40,8 @@ const Cart = ({
               products.find((product) => product.id === lineItem.product_id) ||
               {};
             return (
-              <div className="cartList">
-                <h2 key={lineItem.id}>{product.name}</h2>
+              <div key={lineItem.id} className="cartList">
+                <h2>{product.name}</h2>
                 <p>Quantity: {lineItem.quantity}</p>
                 <p>(${((product.price * lineItem.quantity) / 1).toFixed(2)})</p>
                 <br></br>
@@ -75,7 +75,7 @@ const Cart = ({
             );
           })}
       </div>
-      <br></br>
+      <hr></hr>
       {lineItems.filter((lineItem) => lineItem.order_id === cart.id).length ? (
         <button
           onClick={() => {

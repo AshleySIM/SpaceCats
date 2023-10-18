@@ -7,7 +7,7 @@ import Cart from "./Cart";
 import Login from "./Login";
 import api from "./api";
 import Bookmarks from "./Bookmarks";
-import SignUp from "./api/SignUp";
+import SignUp from "./SignUp";
 import Reviews from "./Reviews";
 
 const App = () => {
