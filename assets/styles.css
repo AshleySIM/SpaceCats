@@ -9,6 +9,11 @@ body {
   color: white;
 }
 
+.title {
+  text-align: center;
+  font-size: 45px;
+}
+
 nav {
   /* border: solid 2px white; */
   display: flex;
@@ -57,7 +62,7 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 1rem;
-  height: 93vh;
+  height: 85vh;
   overflow-y: scroll;
 }
 
@@ -75,9 +80,11 @@ main::-webkit-scrollbar {
 .ordersDiv,
 .bookDiv,
 .reviewsDiv {
-  border: solid 2px white;
+  border: solid 3px white;
+  border-radius: 10px;
   padding: 0.5rem;
   width: calc(95vw/3);
+  backdrop-filter: blur(10px);
 }
 
 .productsList {
@@ -86,7 +93,7 @@ main::-webkit-scrollbar {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 90vh;
+  height: 76vh;
   overflow-y: scroll;
 }
 
@@ -94,8 +101,17 @@ main::-webkit-scrollbar {
   display: none;
 }
 
+.cartList2::-webkit-scrollbar {
+  display: none;
+}
+
+.cartList2 {
+  height: 65vh;
+  overflow-y: scroll;
+}
+
 .productCard {
-  border: solid white 2px;
+  border: solid white 3px;
   border-radius: 10px;
   padding: 0.5rem;
   margin: 0.5rem;
@@ -107,10 +123,27 @@ main::-webkit-scrollbar {
 img {
   border-radius: 10px;
   height: 300px;
+  margin: 0.5rem;
+  transition: 0.4s;
+}
+
+img:hover {
+  scale: 1.05;
+  transition-duration: 0.4s;
+}
+
+img::after {
+  scale: 1.05;
+  transition-duration: 0.4s;
+}
+
+img:hover::after {
+  scale: 1.05;
+  transition-duration: 0.4s
 }
 
 .btnDiv {
-  border: solid 2px white;
+  /* border: solid 2px white; */
   padding: 0.5rem;
   display: flex;
   flex-direction: column;

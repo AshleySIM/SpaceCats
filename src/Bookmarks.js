@@ -11,7 +11,7 @@ const Bookmarks = ({ bookmarks, products, auth }) => {
             const product =
               products.find((product) => product.id === bookmark.product_id) ||
               {};
-            return <li key={bookmark.id}>{product.name}</li>;
+            return <li key={bookmark.id}><h2>{product.name}</h2></li>;
           })}
       </ul>
     </div>

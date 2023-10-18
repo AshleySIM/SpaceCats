@@ -26,36 +26,48 @@ const Products = ({
           return (
             <div className="productCard" key={product.id}>
               <h2>{product.name}</h2>
-              <p key={product.id}>
+              <p>
                 {product.image ? <img src={product.image} /> : null}
                 <br></br>
                 {product.description}
                 <br></br>${product.price}
                 <br></br>
                 <div className="btnDiv">
-                {auth.id ? (
-                  cartItem ? (
-                    <button onClick={() => updateLineItem(cartItem)} className="btn">
-                      Add Another
-                    </button>
-                  ) : (
-                    <button onClick={() => createLineItem(product)} className="btn">
-                      Add to cart
-                    </button>
-                  )
-                ) : null}
-                <br></br>
-                {auth.id ? (
-                  bookmark ? (
-                    <button onClick={() => deleteBookmark(bookmark)} className="btn">
-                      Remove Bookmark
-                    </button>
-                  ) : (
-                    <button onClick={() => createBookmark(product)} className="btn">
-                      Bookmark
-                    </button>
-                  )
-                ) : null}
+                  {auth.id ? (
+                    cartItem ? (
+                      <button
+                        onClick={() => updateLineItem(cartItem)}
+                        className="btn"
+                      >
+                        Add Another
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => createLineItem(product)}
+                        className="btn"
+                      >
+                        Add to cart
+                      </button>
+                    )
+                  ) : null}
+                  <br></br>
+                  {auth.id ? (
+                    bookmark ? (
+                      <button
+                        onClick={() => deleteBookmark(bookmark)}
+                        className="btn"
+                      >
+                        Remove Bookmark
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => createBookmark(product)}
+                        className="btn"
+                      >
+                        Bookmark
+                      </button>
+                    )
+                  ) : null}
                 </div>
                 <br></br>
                 {auth.is_admin ? (

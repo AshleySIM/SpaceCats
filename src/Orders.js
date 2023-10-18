@@ -24,6 +24,7 @@ const Orders = ({ orders, products, lineItems, users }) => {
                     );
                   })}
                 </ul>
+                <hr></hr>
               </li>
             );
           })}
