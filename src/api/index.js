@@ -57,11 +57,11 @@ const createBookmark = async ({ product, bookmarks, setBookmarks }) => {
   
 };
 
-const createReview = async ({ review, setReviews }) => {
+const createReview = async ({ product, stars, comments, reviews, setReviews }) => {
   const response = await axios.post(
     "/api/reviews",
     {
-     product: product,
+      product: product,
      stars: stars,
      comment: comment,
     },
@@ -188,6 +188,7 @@ const api = {
   updateBookmarks,
   createBookmark,
   createLineItem,
+  createReview,
   updateLineItem,
   subtractLineItem,
   updateOrder,
