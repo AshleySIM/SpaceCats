@@ -9,6 +9,11 @@ body {
   color: white;
 }
 
+.title {
+  text-align: center;
+  font-size: 45px;
+}
+
 nav {
   /* border: solid 2px white; */
   display: flex;
@@ -57,7 +62,7 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 1rem;
-  height: 93vh;
+  height: 85vh;
   overflow-y: scroll;
 }
 
@@ -86,7 +91,7 @@ main::-webkit-scrollbar {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 85vh;
+  height: 76vh;
   overflow-y: scroll;
 }
 

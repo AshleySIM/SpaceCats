@@ -121,18 +121,19 @@ const App = () => {
     <div>
       {auth.id ? (
         <>
+        <h1 className="title">Space Cats</h1>
           <nav>
             <span>
               Welcome {auth.username}!<button onClick={logout}>Logout</button>
             </span>
-            <Link to="/products">Products ({products.length})</Link>
+            <Link to="/products">Products</Link>
             <Link to="/orders">
-              Orders ({orders.filter((order) => !order.is_cart).length})
+              Orders
             </Link>
 
             <Link to="/cart">Cart ({cartCount})</Link>
-            <Link to="/bookmarks">Bookmarks ({bookmarks.length})</Link>
-            <Link to="/reviews"> Reviews ({reviews.length}) </Link>
+            <Link to="/bookmarks">Bookmarks</Link>
+            <Link to="/reviews"> Reviews</Link>
           </nav>
           <main>
             <Routes>
