@@ -1,33 +1,37 @@
 import React, { useState } from "react";
 
-const Login = ({ login }) => {
+const SignUp = ({ createUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const _login = async (ev) => {
+  const save = async (ev) => {
     ev.preventDefault();
+    const user = {
+      username,
+      password,
+    };
     try {
-      await login({ username, password });
+      await createUser(user);
     } catch (ex) {
-      window.alert("incorrect username and/or password");
+      window.alert('That username is already taken')
     }
   };
+
   return (
-    <form onSubmit={_login}>
+    <form onSubmit={save}>
       <input
-        placeholder="username"
+        placeholder=" Create Username"
         value={username}
         onChange={(ev) => setUsername(ev.target.value)}
       />
       <input
-        type="password"
-        placeholder="password"
+        placeholder="Create Password"
         value={password}
         onChange={(ev) => setPassword(ev.target.value)}
       />
-      <button disabled={!username || !password}>Login</button>
+      <button disabled={!username || !password}> Create Account </button>
     </form>
   );
 };
 
-export default Login;
+export default SignUp;

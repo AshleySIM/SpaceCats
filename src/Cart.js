@@ -32,6 +32,7 @@ const Cart = ({
     <div className="cartDiv">
       <h1>Cart</h1>
       <h2>Total: ${fixedPrice}</h2>
+      <div className="cartList2">
       <div>
         {lineItems
           .filter((lineItem) => lineItem.order_id === cart.id)
@@ -40,12 +41,15 @@ const Cart = ({
               products.find((product) => product.id === lineItem.product_id) ||
               {};
             return (
-              <div>
-              <h2 key={lineItem.id}>{product.name}</h2>
+              <div key={lineItem.id} className="cartList">
+                <h2>{product.name}</h2>
                 <p>Quantity: {lineItem.quantity}</p>
                 <p>(${((product.price * lineItem.quantity) / 1).toFixed(2)})</p>
                 <br></br>
-                <button onClick={() => updateLineItem(lineItem)} className="btn">
+                <button
+                  onClick={() => updateLineItem(lineItem)}
+                  className="btn"
+                >
                   {" "}
                   + 1 {product.name}{" "}
                 </button>
@@ -62,15 +66,18 @@ const Cart = ({
                   - 1 {product.name}{" "}
                 </button>
                 <br></br>
-                <button onClick={() => removeFromCart(lineItem)} className="btn">
+                <button
+                  onClick={() => removeFromCart(lineItem)}
+                  className="btn"
+                >
                   Remove All {product.name} From Cart
                 </button>
-              
               </div>
             );
           })}
       </div>
-      <br></br>
+      </div>
+      <hr></hr>
       {lineItems.filter((lineItem) => lineItem.order_id === cart.id).length ? (
         <button
           onClick={() => {

@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Reviews = ({products, reviews, createReview, setReviews}) => {
     const [product, setProduct] = useState('');
@@ -47,25 +46,25 @@ const Reviews = ({products, reviews, createReview, setReviews}) => {
             <input type="text" placeholder="comments" value= {comment} onChange={ev => setComment(ev.target.value)}></input>
             <button type="submit" disabled={!product || !stars}> Submit </button>
         </form>
-        <ul className='reviewsList'>
-            { reviews.map ( review => {
-                return (
-                    <li key = {review.id} className='review'>
-                        Product: {review.product}
-                        <br/>
-                        Stars: {review.stars}
-                        <br/>
-                        Comments: {review.comment}
-
-                    </li>
-                )
-            })
-
-            }
-        </ul>
         
         </div>
-    )
+    
+      <div className="reviewsList">
+        {reviews.map((review) => {
+          return (
+            <div key={review.id} className="review">
+              <hr></hr>
+              <h2>{review.product}</h2>
+              <br />
+              <p>Stars: {review.stars}</p>
+              <br />
+              <p>Comments: {review.comment}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default Reviews;
