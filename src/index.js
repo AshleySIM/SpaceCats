@@ -171,14 +171,14 @@ const App = () => {
                 path="/products/:productId"
                 element={
                   <ProductDetail
-                  auth={auth}
-                  products={products}
-                  cartItems={cartItems}
-                  createLineItem={createLineItem}
-                  updateLineItem={updateLineItem}
-                  bookmarks={bookmarks}
-                  createBookmark={createBookmark}
-                  deleteBookmark={deleteBookmark}
+                    auth={auth}
+                    products={products}
+                    cartItems={cartItems}
+                    createLineItem={createLineItem}
+                    updateLineItem={updateLineItem}
+                    bookmarks={bookmarks}
+                    createBookmark={createBookmark}
+                    deleteBookmark={deleteBookmark}
                   />
                 }
               />

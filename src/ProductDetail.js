@@ -1,14 +1,16 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-const ProductDetail = ({ products,
+const ProductDetail = ({
+  products,
   cartItems,
   createLineItem,
   updateLineItem,
   auth,
   bookmarks,
   createBookmark,
-  deleteBookmark, }) => {
+  deleteBookmark,
+}) => {
   const { productId } = useParams();
 
   const product = products.find((product) => product.id === productId);
@@ -17,9 +19,12 @@ const ProductDetail = ({ products,
     return <div>Product not found.</div>;
   }
 
-  const cartItem = cartItems.find((lineItem) => lineItem.product_id === productId);
-  const bookmark = bookmarks.find((bookmark) => bookmark.product_id === productId); // Define bookmark here
-
+  const cartItem = cartItems.find(
+    (lineItem) => lineItem.product_id === productId
+  );
+  const bookmark = bookmarks.find(
+    (bookmark) => bookmark.product_id === productId
+  ); // Define bookmark here
 
   return (
     <div>
@@ -29,42 +34,30 @@ const ProductDetail = ({ products,
       <p>{product.description}</p>
       <p>${product.price}</p>
       <div className="btnDiv">
-                {auth.id ? (
-                  cartItem ? (
-                    <button
-                      onClick={() => updateLineItem(cartItem)}
-                      className="btn"
-                    >
-                      Add Another
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => createLineItem(product)}
-                      className="btn"
-                    >
-                      Add to cart
-                    </button>
-                  )
-                ) : null}
-                <br></br>
-                {auth.id ? (
-                  bookmark ? (
-                    <button
-                      onClick={() => deleteBookmark(bookmark)}
-                      className="btn"
-                    >
-                      Remove Bookmark
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => createBookmark(product)}
-                      className="btn"
-                    >
-                      Bookmark
-                    </button>
-                  )
-                ) : null}
-              </div>
+        {auth.id ? (
+          cartItem ? (
+            <button onClick={() => updateLineItem(cartItem)} className="btn">
+              Add Another
+            </button>
+          ) : (
+            <button onClick={() => createLineItem(product)} className="btn">
+              Add to cart
+            </button>
+          )
+        ) : null}
+        <br></br>
+        {auth.id ? (
+          bookmark ? (
+            <button onClick={() => deleteBookmark(bookmark)} className="btn">
+              Remove Bookmark
+            </button>
+          ) : (
+            <button onClick={() => createBookmark(product)} className="btn">
+              Bookmark
+            </button>
+          )
+        ) : null}
+      </div>
     </div>
   );
 };
