@@ -132,12 +132,23 @@ const App = () => {
             <span>
               Welcome {auth.username}!<button onClick={logout}>Logout</button>
             </span>
-            <Link to="/products" className="navLink">Products</Link>
-            <Link to="/orders" className="navLink">Orders</Link>
+            <Link to="/products" className="navLink">
+              Products
+            </Link>
+            <Link to="/orders" className="navLink">
+              Orders
+            </Link>
 
-            <Link to="/cart" className="navLink">Cart ({cartCount})</Link>
-            <Link to="/bookmarks" className="navLink">Bookmarks</Link>
-            <Link to="/reviews" className="navLink"> Reviews</Link>
+            <Link to="/cart" className="navLink">
+              Cart ({cartCount})
+            </Link>
+            <Link to="/bookmarks" className="navLink">
+              Bookmarks
+            </Link>
+            <Link to="/reviews" className="navLink">
+              {" "}
+              Reviews
+            </Link>
           </nav>
           <main>
             <Routes>
@@ -158,7 +169,18 @@ const App = () => {
               />
               <Route
                 path="/products/:productId"
-                element={<ProductDetail products={products} />}
+                element={
+                  <ProductDetail
+                  auth={auth}
+                  products={products}
+                  cartItems={cartItems}
+                  createLineItem={createLineItem}
+                  updateLineItem={updateLineItem}
+                  bookmarks={bookmarks}
+                  createBookmark={createBookmark}
+                  deleteBookmark={deleteBookmark}
+                  />
+                }
               />
               <Route
                 path="/cart"
