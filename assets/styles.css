@@ -94,6 +94,12 @@ main::-webkit-scrollbar {
   text-align: center;
 }
 
+.homeText {
+  border: solid 2px white;
+  border-radius: 10px;
+  backdrop-filter: brightness(50%);
+}
+
 .productsDiv {
   /* border: solid 2px white; */
   margin-bottom: 0;
@@ -239,7 +245,7 @@ img:hover::after {
   transition : 225ms;
   padding: 10px 36px;
   transform : translateY(-0px);
-  background-color: #011023;
+  background-color: rgba(255, 255, 255, 0);
   color: #ffffff;
   border: solid 2px #ffffff;
   }
