@@ -233,7 +233,7 @@ const App = () => {
           </main>
         </>
       ) : (
-        <div>
+        <div className="frontPage">
           <Login login={login} />
           <SignUp createUser={createUser} />
           <Products

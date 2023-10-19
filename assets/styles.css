@@ -4,9 +4,15 @@
 
 body {
   font-family: verdana;
-  background-image: url(https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2021/07/mars_express/23402470-1-eng-GB/Mars_Express_pillars.png);
-  background-size: cover;
+  background-image: url(https://cdnb.artstation.com/p/assets/images/images/025/709/623/large/alex-pogorelov-finalcut-00-00-30-06-still004.jpg?1586695785);
+  background-size:cover;
+  background-repeat: no-repeat;
   color: white;
+}
+
+.frontPage {
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .titleLink {
@@ -152,7 +158,8 @@ main::-webkit-scrollbar {
   height: 100%;
   width: 100%;
   font-size: 18px;
-  background-color: #011023;
+  background-color: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(10px);
 }
 
 .search-bar:focus {
@@ -161,7 +168,7 @@ main::-webkit-scrollbar {
 
 select, .commentBox {
     border-radius: 10px;
-    background-color: #011023;
+    background-color: rgba(255, 255, 255, 0);
     color: white;
     border: solid white 2px;
     padding: 0.5rem;

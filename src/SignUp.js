@@ -20,11 +20,13 @@ const SignUp = ({ createUser }) => {
   return (
     <form onSubmit={save}>
       <input
+        className="commentBox"
         placeholder=" Create Username"
         value={username}
         onChange={(ev) => setUsername(ev.target.value)}
       />
       <input
+        className="commentBox"
         placeholder="Create Password"
         value={password}
         onChange={(ev) => setPassword(ev.target.value)}

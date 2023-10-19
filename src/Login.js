@@ -15,11 +15,13 @@ const Login = ({ login }) => {
   return (
     <form onSubmit={_login}>
       <input
+        className="commentBox"
         placeholder="username"
         value={username}
         onChange={(ev) => setUsername(ev.target.value)}
       />
       <input
+        className="commentBox"
         type="password"
         placeholder="password"
         value={password}
