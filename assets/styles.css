@@ -4,9 +4,20 @@
 
 body {
   font-family: verdana;
-  background-image: url(https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2021/07/mars_express/23402470-1-eng-GB/Mars_Express_pillars.png);
-  background-size: cover;
+  background-image: url(https://cdnb.artstation.com/p/assets/images/images/025/709/623/large/alex-pogorelov-finalcut-00-00-30-06-still004.jpg?1586695785);
+  background-size:cover;
+  background-repeat: no-repeat;
   color: white;
+}
+
+.frontPage {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.titleLink {
+  color: white;
+  text-decoration: none;
 }
 
 .title {
@@ -23,14 +34,14 @@ nav {
   font-size: 24px;
 }
 
-a {
+.navLink {
   display: inline-block;
   position: relative;
   color: white;
   text-decoration: none;
 }
 
-a::after {
+.navLink::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -43,7 +54,7 @@ a::after {
   transition: transform 0.25s ease-out;
 }
 
-a:hover::after {
+.navLink:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
@@ -70,10 +81,31 @@ main::-webkit-scrollbar {
   display: none;
 }
 
+.homeDiv {
+  /* border: solid white 2px; */
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  max-width: 60%;
+  text-align: center;
+}
+
+.homeText {
+  border: solid 2px white;
+  border-radius: 10px;
+  backdrop-filter: brightness(50%);
+}
+
 .productsDiv {
   /* border: solid 2px white; */
+  margin-bottom: 0;
   padding: 0.5rem;
-  width: 95vw;
+  height: 85vh;
+  width: 98vw;
 }
 
 .cartDiv,
@@ -93,7 +125,7 @@ main::-webkit-scrollbar {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 76vh;
+  height: 73.5vh;
   overflow-y: scroll;
 }
 
@@ -109,6 +141,49 @@ main::-webkit-scrollbar {
   height: 65vh;
   overflow-y: scroll;
 }
+
+.containerDiv {
+  /* border: white solid 2px; */
+  display: flex;
+  justify-content: center;
+}
+
+.searchContainer {
+  border: white solid 2px;
+  border-radius: 50px;
+  height: 40px;
+  width: 300px;
+  margin-bottom: 0.5rem;
+}
+
+.search-bar {
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 50px;
+  height: 100%;
+  width: 100%;
+  font-size: 18px;
+  background-color: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(10px);
+}
+
+.search-bar:focus {
+  outline: none;
+}
+
+select, .commentBox {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    border: solid white 2px;
+    padding: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  select, .commentBox:focus {
+    outline: none;
+  }
 
 .productCard {
   border: solid white 3px;
@@ -170,7 +245,9 @@ img:hover::after {
   transition : 225ms;
   padding: 10px 36px;
   transform : translateY(-0px);
-  background-color: #011023;
+  background-color: rgba(255, 255, 255, 0);
   color: #ffffff;
   border: solid 2px #ffffff;
   }
+
+  
