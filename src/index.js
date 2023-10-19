@@ -141,10 +141,10 @@ const App = () => {
             </Link>
 
             <Link to="/cart" className="navLink">
-              Cart ({cartCount})
+              Cart ({lineItems.length})
             </Link>
             <Link to="/bookmarks" className="navLink">
-              Bookmarks
+              Bookmarks({bookmarks.length})
             </Link>
             <Link to="/reviews" className="navLink">
               {" "}
