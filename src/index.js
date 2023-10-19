@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { Link, HashRouter, Router, Routes, Route } from "react-router-dom";
+import Home from "./Home";
 import Products from "./Products";
 import ProductDetail from "./ProductDetail";
 import Orders from "./Orders";
@@ -127,7 +128,7 @@ const App = () => {
     <div>
       {auth.id ? (
         <>
-          <h1 className="title">Space Cats</h1>
+          <Link to={"/"} className="titleLink"><h1 className="title">Space Cats</h1></Link>
           <nav>
             <span>
               Welcome {auth.username}!<button onClick={logout}>Logout</button>
@@ -152,6 +153,7 @@ const App = () => {
           </nav>
           <main>
             <Routes>
+              <Route path="/" element={<Home />}/>
               <Route
                 path="/products"
                 element={

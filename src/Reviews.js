@@ -44,7 +44,7 @@ const Reviews = ({products, reviews, createReview, setReviews}) => {
                 <option type="number"> 4 </option>
                 <option type="number"> 5 </option>
             </select>
-            <input type="text" placeholder="comments" value= {comment} onChange={ev => setComment(ev.target.value)}></input>
+            <input type="text" className="commentBox" placeholder="comments" value= {comment} onChange={ev => setComment(ev.target.value)}></input>
             <button type="submit" disabled={!product || !stars}> Submit </button>
         </form>
     

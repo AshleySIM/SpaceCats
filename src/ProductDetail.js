@@ -24,7 +24,7 @@ const ProductDetail = ({
   );
   const bookmark = bookmarks.find(
     (bookmark) => bookmark.product_id === productId
-  ); // Define bookmark here
+  );
 
   return (
     <div>

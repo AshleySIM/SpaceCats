@@ -9,6 +9,11 @@ body {
   color: white;
 }
 
+.titleLink {
+  color: white;
+  text-decoration: none;
+}
+
 .title {
   text-align: center;
   font-size: 45px;
@@ -141,6 +146,19 @@ main::-webkit-scrollbar {
   outline: none;
 }
 
+select, .commentBox {
+    border-radius: 10px;
+    background-color: #011023;
+    color: white;
+    border: solid white 2px;
+    padding: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  select, .commentBox:focus {
+    outline: none;
+  }
+
 .productCard {
   border: solid white 3px;
   border-radius: 10px;
@@ -205,3 +223,5 @@ img:hover::after {
   color: #ffffff;
   border: solid 2px #ffffff;
   }
+
+  
