@@ -23,14 +23,14 @@ nav {
   font-size: 24px;
 }
 
-a {
+.navLink {
   display: inline-block;
   position: relative;
   color: white;
   text-decoration: none;
 }
 
-a::after {
+.navLink::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -43,7 +43,7 @@ a::after {
   transition: transform 0.25s ease-out;
 }
 
-a:hover::after {
+.navLink:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
@@ -72,8 +72,10 @@ main::-webkit-scrollbar {
 
 .productsDiv {
   /* border: solid 2px white; */
+  margin-bottom: 0;
   padding: 0.5rem;
-  width: 95vw;
+  height: 85vh;
+  width: 98vw;
 }
 
 .cartDiv,
@@ -93,7 +95,7 @@ main::-webkit-scrollbar {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 76vh;
+  height: 73.5vh;
   overflow-y: scroll;
 }
 
@@ -108,6 +110,35 @@ main::-webkit-scrollbar {
 .cartList2 {
   height: 65vh;
   overflow-y: scroll;
+}
+
+.containerDiv {
+  /* border: white solid 2px; */
+  display: flex;
+  justify-content: center;
+}
+
+.searchContainer {
+  border: white solid 2px;
+  border-radius: 50px;
+  height: 40px;
+  width: 300px;
+  margin-bottom: 0.5rem;
+}
+
+.search-bar {
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 50px;
+  height: 100%;
+  width: 100%;
+  font-size: 18px;
+  background-color: #011023;
+}
+
+.search-bar:focus {
+  outline: none;
 }
 
 .productCard {

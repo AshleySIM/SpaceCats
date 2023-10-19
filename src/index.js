@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { Link, HashRouter, Router, Routes, Route } from "react-router-dom";
 import Products from "./Products";
+import ProductDetail from "./ProductDetail";
 import Orders from "./Orders";
 import Cart from "./Cart";
 import Login from "./Login";
@@ -72,7 +73,7 @@ const App = () => {
   };
 
   const createReview = async (review) => {
-    console.log(reviews)
+    console.log(reviews);
     await api.createReview({ review, setReviews, reviews });
   };
 
@@ -126,19 +127,17 @@ const App = () => {
     <div>
       {auth.id ? (
         <>
-        <h1 className="title">Space Cats</h1>
+          <h1 className="title">Space Cats</h1>
           <nav>
             <span>
               Welcome {auth.username}!<button onClick={logout}>Logout</button>
             </span>
-            <Link to="/products">Products</Link>
-            <Link to="/orders">
-              Orders
-            </Link>
+            <Link to="/products" className="navLink">Products</Link>
+            <Link to="/orders" className="navLink">Orders</Link>
 
-            <Link to="/cart">Cart ({cartCount})</Link>
-            <Link to="/bookmarks">Bookmarks</Link>
-            <Link to="/reviews"> Reviews</Link>
+            <Link to="/cart" className="navLink">Cart ({cartCount})</Link>
+            <Link to="/bookmarks" className="navLink">Bookmarks</Link>
+            <Link to="/reviews" className="navLink"> Reviews</Link>
           </nav>
           <main>
             <Routes>
@@ -156,6 +155,10 @@ const App = () => {
                     deleteBookmark={deleteBookmark}
                   />
                 }
+              />
+              <Route
+                path="/products/:productId"
+                element={<ProductDetail products={products} />}
               />
               <Route
                 path="/cart"
@@ -193,7 +196,14 @@ const App = () => {
               />
               <Route
                 path="/reviews"
-                element={<Reviews reviews={reviews} products={products} createReview={createReview} setReviews={setReviews}/>}
+                element={
+                  <Reviews
+                    reviews={reviews}
+                    products={products}
+                    createReview={createReview}
+                    setReviews={setReviews}
+                  />
+                }
               />
             </Routes>
           </main>
